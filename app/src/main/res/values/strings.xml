@@ -1,4 +1,18 @@
 <resources>
     <string name="app_name">DroidPractice1</string>
     <string name="article_title">Статья</string>
+
+    <string name="survey_hint">Проголосуйте за лучший автомобиль класса B, продаваемый в России в 2025 году</string>
+    <string-array name="survey_models">
+        <item>Lada Granta</item>
+        <item>Changan Alsvin</item>
+        <item>Solaris HS</item>
+        <item>Jetta VA3</item>
+        <item>Omoda S5</item>
+        <item>Kaiyi E5</item>
+        <item>Lada Vesta</item>
+    </string-array>
+    <string name="anonymously">Анонимно</string>
+    <string name="name_hint">Ваше имя</string>
+    <string name="survey_button_done">Проголосовать за %s</string>
 </resources>
