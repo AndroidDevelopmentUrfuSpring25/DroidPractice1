@@ -12,7 +12,52 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:title="@string/article_title"
-        android:navigationIcon="@drawable/arrow_back" />
+        android:navigationIcon="@drawable/arrow_back"
+        android:title="@string/article_title" />
 
+    <ScrollView
+        android:id="@+id/secondScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Блины: Кулинарная магия или ловушка?"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#FF5722"
+                android:layout_marginBottom="16dp"/>
+
+            <ImageView
+                android:id="@+id/photo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                tools:src="@drawable/ic_launcher_background" />
+
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Друзья, не дайте себя обмануть! Блины — это не просто еда, это настоящая кулинарная иллюзия! Вы думаете, что всего лишь один блин — это безобидно? Ха! Это как взять одну конфету и оказаться в шоколадной реке!\n\nКаждый блин — это не просто тесто, это целая вселенная калорий, прячущаяся под слоем сметаны и варенья. А когда вы начинаете добавлять сгущенку, вы уже на грани кулинарного апокалипсиса! Ваши друзья могут смотреть на вас с недоумением, но на самом деле они завидуют вашему смелому путешествию в мир блинов.\n\nТак что, если вы решите устроить блиновую вечеринку, помните: это не просто еда, это вызов! И кто знает, может быть, в следующий раз вы будете не с блинами, а с кулинарным детоксом!"
+                android:textSize="16sp"
+                android:textColor="#333"
+                android:lineSpacingExtra="4dp"/>
+
+            <Switch
+                android:id="@+id/switchRead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Прочитано" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
