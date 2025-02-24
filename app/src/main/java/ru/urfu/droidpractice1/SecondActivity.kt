@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.activity.addCallback
 import androidx.activity.ComponentActivity
 import android.os.Bundle
+import android.util.Log
 import com.bumptech.glide.Glide
 import ru.urfu.droidpractice1.databinding.ActivitySecondBinding
 
@@ -14,6 +15,8 @@ class SecondActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("SecondActivity", "onCreate()")
+
         binding = ActivitySecondBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -47,6 +50,36 @@ class SecondActivity : ComponentActivity() {
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         cooked = savedInstanceState.getBoolean(KEY_COOKED)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d("SecondActivity", "onStart()")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d("SecondActivity", "onRestart()")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("SecondActivity", "onResume()")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("SecondActivity", "onPause()")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("SecondActivity", "onStop()")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("SecondActivity", "onDestroy()")
     }
 
     companion object {

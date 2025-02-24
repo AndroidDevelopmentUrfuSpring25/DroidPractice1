@@ -2,6 +2,7 @@ package ru.urfu.droidpractice1
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
@@ -16,8 +17,14 @@ class MainActivity : ComponentActivity() {
     private var cooked: Boolean by mutableStateOf(false)
     private var rating: Int by mutableIntStateOf(0)
 
+    private val resultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            cooked = result.data?.getBooleanExtra(KEY_COOKED, false) ?: false
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("MainActivity", "onCreate()")
         setContent {
             MainActivityScreen(
                 ::onClickLike,
@@ -67,10 +74,35 @@ class MainActivity : ComponentActivity() {
         resultLauncher.launch(moveIntent)
     }
 
-    private val resultLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            cooked = result.data?.getBooleanExtra(KEY_COOKED, false) ?: false
-        }
+    override fun onStart() {
+        super.onStart()
+        Log.d("MainActivity", "onStart()")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d("MainActivity", "onRestart()")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("MainActivity", "onResume()")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("MainActivity", "onPause()")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("MainActivity", "onStop()")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("MainActivity", "onDestroy()")
+    }
 
     companion object {
         const val KEY_COOKED = "cooked"

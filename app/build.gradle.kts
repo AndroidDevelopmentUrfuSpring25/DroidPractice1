@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "ru.urfu.droidpractice1"
-        minSdk = 28
+        minSdk = 24 // Android 7
         //noinspection OldTargetApi
         targetSdk = 34
         versionCode = 1
