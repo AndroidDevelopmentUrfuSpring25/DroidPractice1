@@ -27,7 +27,14 @@ class SecondActivity : ComponentActivity() {
         binding.readSwitch.setOnCheckedChangeListener { _, isChecked ->
             isReadChecked = isChecked
         }
+    }
 
+//    override fun onSaveInstanceState(outState: Bundle) {
+//        outState.putBoolean(IS_ARTICLE2_READ, isReadChecked)
+//        super.onSaveInstanceState(outState)
+//    }
 
+    companion object {
+        private const val IS_ARTICLE2_READ = "IS_ARTICLE2_READ"
     }
 }
