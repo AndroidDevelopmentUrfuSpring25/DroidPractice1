@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="fontText">16sp</dimen>
+    <dimen name="fontTitle">22sp</dimen>
+    <dimen name="textPadding">10dp</dimen>
+    <dimen name="picturePadding">15dp</dimen>
+    
+</resources>
