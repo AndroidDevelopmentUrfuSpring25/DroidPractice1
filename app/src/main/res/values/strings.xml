@@ -1,4 +1,44 @@
-<resources>
-    <string name="app_name">DroidPractice1</string>
-    <string name="article_title">Статья</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" tools:ignore="Typos">DroidPractice1</string>
+    <string name="cooked">Приготовлено</string>
+    <string name="images_description">Изображение</string>
+
+    <string name="article_title">Оладьи из тыквы</string>
+    <string name="article_text">Румяные, аппетитные, сочные, ярко-оранжевые! Сделать оладьи из тыквы очень просто и быстро. Это займёт совсем немного времени, самое трудоемкое - очистка овощей. Оладушки обязательно понравятся детям, ведь они получаются сладкими и без добавления сахара.</string>
+    <string name="article_image_1">https://static.1000.menu/img/content-v2/19/3f/622/oladi-iz-tjkvj_1602064384_11_max.jpg</string>
+    <string name="article_image_2">https://static.1000.menu/img/content-v2/19/3f/622/oladi-iz-tjkvj_1602064384_12_max.jpg</string>
+    <string name="article_image_3">https://static.1000.menu/img/content-v2/19/3f/622/oladi-iz-tjkvj_1602064384_13_max.jpg</string>
+    <string name="article_bzu">ККАЛ~83 Б~3 Ж~4 У~10 (100гр)</string>
+    <string name="article_link_desc">Взято с сайта 1000.menu</string>
+    <string name="article_link_url">https://1000.menu/cooking/622-oladi-iz-tjkvj</string>
+    <string name="article_button_recipe">Перейти к рецепту</string>
+
+    <!-- Лучше было использовать массив, но я не смог найти, как к нему обращаться в xml -->
+    <string name="recipe_ingr_1_1">Тыква</string>
+    <string name="recipe_ingr_1_2">500 гр.</string>
+    <string name="recipe_ingr_2_1">Мука</string>
+    <string name="recipe_ingr_2_2">30 гр.</string>
+    <string name="recipe_ingr_3_1">Яйца</string>
+    <string name="recipe_ingr_3_2">1 шт.</string>
+    <string name="recipe_ingr_4_1">Соль</string>
+    <string name="recipe_ingr_4_2">1 ч.л.</string>
+
+    <!-- Лучше было использовать массив, но я не смог найти, как к нему обращаться в xml -->
+    <string name="recipe_text_1">Как приготовить оладьи из тыквы быстро и просто? Подготовьте продукты. Вес тыквы указан до ее очистки. Муки может уйти чуть больше или чуть меньше, это зависит от сочности тыквы. Можно жарить такие оладьи на сухой сковороде, тогда не понадобится масло.</string>
+    <string name="recipe_text_2">Тыкву помойте и очистите от кожуры и семян. Будьте осторожны, тыква очень твердый овощ, не порежьтесь! Удобнее будет разрезать ее на небольшие кусочки и чистить их отдельно.</string>
+    <string name="recipe_text_3">Натрите тыкву на терке. Какого размера выбрать отверстия? Решать вам. Можно использовать самую крупную, на ней натереть тыкву будет проще и быстрее всего. Но тогда оладьи придется дольше жарить, иначе тыква в них останется жесткой. Можно натереть на самой мелкой - получится практически пюре. Оладьи из него будут самые нежные, но придется потрудиться. Я всегда тру на средней. И быстро, и вкусно.</string>
+    <string name="recipe_text_4">Добавьте к тыкве яйцо и соль. Просейте муку. Так как мы не добавляем ни соды, ни разрыхлителя, именно просеивание даст небольшую пышность оладьям.</string>
+    <string name="recipe_text_5">Хорошо перемешайте все ингредиенты до состояния однородного теста. У меня была тыква средней сочности, тесто получилось достаточно густым. Но и оладьи из него хорошо держали форму, их было легко переворачивать. Если ваше тесто жидкое, добавьте еще немного муки. Но не переборщите, чтобы не забить вкус тыквы.</string>
+    <string name="recipe_text_6">Разогрейте сковороду на среднем огне. Налейте масло. Его тоже хорошо прогрейте, чтобы оладьи не прилипли. Если вы жарите их без масла, то лучше выбрать сковороду с антипригарным покрытием. Выкладывайте тесто ложкой на сковороду, формируя круглые оладьи.</string>
+    <string name="recipe_text_7">Обжаривайте оладьи с обеих сторон до золотистой корочки на небольшом огне, по паре минут с каждой стороны. Если вы натирали тыкву на крупной терке, то подержите их немного под крышкой, чтобы тыква успела проготовиться. Готовые оладьи снимите со сковороды и сразу подавайте на стол. Очень хорошо к ним подходит сметана. Других добавок можно и не брать - тыква сама по себе очень яркая по вкусу.</string>
+
+    <string-array name="recipe_images">
+        <item>https://static.1000.menu/res/380/img/content-v2/19/3f/622/oladi-iz-tjkvj_1602064384_1_max.jpg</item>
+        <item>https://static.1000.menu/res/380/img/content-v2/19/3f/622/oladi-iz-tjkvj_1602064384_2_max.jpg</item>
+        <item>https://static.1000.menu/res/380/img/content-v2/19/3f/622/oladi-iz-tjkvj_1602064384_3_max.jpg</item>
+        <item>https://static.1000.menu/res/380/img/content-v2/19/3f/622/oladi-iz-tjkvj_1602064384_4_max.jpg</item>
+        <item>https://static.1000.menu/res/380/img/content-v2/19/3f/622/oladi-iz-tjkvj_1602064384_5_max.jpg</item>
+        <item>https://static.1000.menu/res/380/img/content-v2/19/3f/622/oladi-iz-tjkvj_1602064384_6_max.jpg</item>
+        <item>https://static.1000.menu/res/380/img/content-v2/19/3f/622/oladi-iz-tjkvj_1602064384_7_max.jpg</item>
+    </string-array>
 </resources>
