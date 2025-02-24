@@ -6,13 +6,63 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".SecondActivity">
 
+    <!-- Toolbar -->
     <Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:title="@string/article_title"
         android:navigationIcon="@drawable/arrow_back" />
+
+    <!-- Контейнер для статьи -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Заголовок статьи -->
+            <TextView
+                android:id="@+id/articleTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Скажу одно — мы будем готовы. Симеоне — о мадридском дерби в 1/8 финала Лиги чемпионов"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:paddingBottom="8dp"/>
+
+            <!-- Изображение статьи -->
+            <ImageView
+                android:id="@+id/articleImage"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/article_image_desc"
+                android:paddingBottom="8dp"/>
+
+            <!-- Основной текст статьи -->
+            <TextView
+                android:id="@+id/articleText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/article_text"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:paddingBottom="16dp"/>
+
+            <!-- Переключатель "Прочитано" -->
+            <Switch
+                android:id="@+id/readSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Прочитано"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
