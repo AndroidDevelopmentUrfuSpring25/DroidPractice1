@@ -37,12 +37,13 @@ import ru.urfu.droidpractice1.ui.theme.DroidPractice1Theme
 @OptIn(ExperimentalGlideComposeApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun MainActivityScreen(
+    rating: Int = 128,
+    cooked: Boolean = false,
+    images: Array<String> = emptyArray(),
     onClickLike: () -> Unit = {},
     onClickDislike: () -> Unit = {},
     onClickShare: () -> Unit = {},
     onClickRecipe: () -> Unit = {},
-    cooked: Boolean = false,
-    rating: Int = 128
 ) {
     DroidPractice1Theme {
         Scaffold(
@@ -111,21 +112,14 @@ fun MainActivityScreen(
                         .padding(vertical = 16.dp)
                         .fillMaxWidth()
                 )
-                GlideImage(
-                    model = stringResource(R.string.article_image_1),
-                    contentDescription = stringResource(R.string.images_description),
-                    contentScale = ContentScale.FillWidth
-                )
-                GlideImage(
-                    model = stringResource(R.string.article_image_2),
-                    contentDescription = stringResource(R.string.images_description),
-                    contentScale = ContentScale.FillWidth
-                )
-                GlideImage(
-                    model = stringResource(R.string.article_image_3),
-                    contentDescription = stringResource(R.string.images_description),
-                    contentScale = ContentScale.FillWidth
-                )
+
+                images.forEach {
+                    GlideImage(
+                        model = it,
+                        contentDescription = stringResource(R.string.images_description),
+                        contentScale = ContentScale.FillWidth
+                    )
+                }
                 Text(
                     text = stringResource(id = R.string.article_bzu),
                     textAlign = TextAlign.Center,

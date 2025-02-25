@@ -10,6 +10,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.res.stringArrayResource
+import ru.urfu.droidpractice1.SecondActivity.Companion.KEY_COOKED
 import ru.urfu.droidpractice1.content.MainActivityScreen
 
 
@@ -27,12 +29,13 @@ class MainActivity : ComponentActivity() {
         Log.d("MainActivity", "onCreate()")
         setContent {
             MainActivityScreen(
+                rating,
+                cooked,
+                stringArrayResource(id = R.array.article_images),
                 ::onClickLike,
                 ::onClickDislike,
                 ::onClickShare,
                 ::onClickRecipe,
-                cooked,
-                rating
             )
         }
     }
@@ -105,7 +108,6 @@ class MainActivity : ComponentActivity() {
     }
 
     companion object {
-        const val KEY_COOKED = "cooked"
         const val KEY_RATING = "rating"
     }
 }

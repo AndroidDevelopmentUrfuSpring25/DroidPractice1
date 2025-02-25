@@ -1,12 +1,19 @@
 package ru.urfu.droidpractice1
 
 import android.content.Intent
-import androidx.activity.addCallback
-import androidx.activity.ComponentActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TableLayout
+import android.widget.TableRow
+import android.widget.TextView
+import androidx.activity.ComponentActivity
+import androidx.activity.addCallback
 import com.bumptech.glide.Glide
 import ru.urfu.droidpractice1.databinding.ActivitySecondBinding
+
 
 class SecondActivity : ComponentActivity() {
 
@@ -21,16 +28,13 @@ class SecondActivity : ComponentActivity() {
         setContentView(binding.root)
 
         cooked = intent.getBooleanExtra(KEY_COOKED, false)
+        val ingredientKeys = resources.getStringArray(R.array.recipe_ingredients_keys)
+        val ingredientValues = resources.getStringArray(R.array.recipe_ingredients_values)
+        val contentTexts = resources.getStringArray(R.array.recipe_text)
         val contentImages = resources.getStringArray(R.array.recipe_images)
 
-        /* Лучше было использовать цикл, но я не смог найти, как итерироваться по разным id */
-        Glide.with(binding.photo1).asBitmap().load(contentImages[0]).into(binding.photo1)
-        Glide.with(binding.photo2).asBitmap().load(contentImages[1]).into(binding.photo2)
-        Glide.with(binding.photo3).asBitmap().load(contentImages[2]).into(binding.photo3)
-        Glide.with(binding.photo4).asBitmap().load(contentImages[3]).into(binding.photo4)
-        Glide.with(binding.photo5).asBitmap().load(contentImages[4]).into(binding.photo5)
-        Glide.with(binding.photo6).asBitmap().load(contentImages[5]).into(binding.photo6)
-        Glide.with(binding.photo7).asBitmap().load(contentImages[6]).into(binding.photo7)
+        fillTable(binding.recipeTable, ingredientKeys, ingredientValues)
+        fillContent(binding.contentGroup, contentTexts, contentImages)
 
         binding.cookedSwitch.isChecked = cooked
         binding.cookedSwitch.setOnCheckedChangeListener { _, isChecked -> cooked = isChecked }
@@ -39,6 +43,47 @@ class SecondActivity : ComponentActivity() {
         onBackPressedDispatcher.addCallback(this) {
             setResult(RESULT_OK, Intent().apply { putExtra(KEY_COOKED, cooked) })
             finish()
+        }
+    }
+
+    private fun fillTable(tableLayout: TableLayout, keys: Array<String>, values: Array<String>) {
+        if (keys.size != values.size) throw Exception()
+        for (i in keys.indices) {
+            val key = TextView(this).apply {
+                text = keys[i]
+            }
+            val value = TextView(this).apply {
+                text = values[i]
+                layoutParams = TableRow.LayoutParams().apply {
+                    setMargins(0, 0, 0, 16)
+                    gravity = Gravity.END
+                }
+            }
+            val row = TableRow(this).apply {
+                addView(key)
+                addView(value)
+            }
+            tableLayout.addView(row)
+        }
+    }
+
+    private fun fillContent(
+        contentGroup: LinearLayout,
+        texts: Array<String>,
+        images: Array<String>
+    ) {
+        if (texts.size != images.size) throw Exception()
+        for (i in texts.indices) {
+            val textView = TextView(this).apply {
+                text = texts[i]
+                layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT
+                ).apply { setMargins(0, 16, 0, 64) }
+            }
+            val imageView = ImageView(this)
+            Glide.with(imageView).asBitmap().load(images[i]).into(imageView)
+            contentGroup.addView(imageView)
+            contentGroup.addView(textView)
         }
     }
 
