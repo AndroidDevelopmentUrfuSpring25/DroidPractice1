@@ -29,16 +29,21 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
-import ru.urfu.droidpractice1.MainScreenHandler
 import ru.urfu.droidpractice1.R
-import ru.urfu.droidpractice1.model.VoteViewModel
 import ru.urfu.droidpractice1.ui.theme.DroidPractice1Theme
 import ru.urfu.droidpractice1.ui.theme.Typography
 
 @Composable
-fun MainActivityScreen(handler: MainScreenHandler, viewModel: VoteViewModel = viewModel()) {
+@OptIn(ExperimentalMaterial3Api::class)
+fun MainActivityScreen(
+    upVoteCount: Int = 0,
+    downVoteCount: Int = 0,
+    isRead: Boolean = false,
+    upVote: () -> Unit = {},
+    downVote: () -> Unit = {},
+    onToOtherScreenClicked: () -> Unit = {},
+) {
     val context = LocalContext.current
     DroidPractice1Theme {
         Scaffold(modifier = Modifier.fillMaxSize(),
@@ -114,7 +119,7 @@ fun MainActivityScreen(handler: MainScreenHandler, viewModel: VoteViewModel = vi
                     Icon(
                         modifier = Modifier
                             .clickable {
-                                viewModel.upVote()
+                                upVote()
                             }
                             .width(50.dp)
                             .height(50.dp)
@@ -124,14 +129,14 @@ fun MainActivityScreen(handler: MainScreenHandler, viewModel: VoteViewModel = vi
                         contentDescription = null
                     )
                     Text(
-                        text = "${viewModel.getUpVoteCount}",
+                        text = "$upVoteCount",
                         style = Typography.bodyLarge,
                         modifier = Modifier.padding(end = 20.dp) // Отступ между текстом и иконкой
                     )
                     Icon(
                         modifier = Modifier
                             .clickable {
-                                viewModel.downVote()
+                                downVote()
                             }
                             .width(50.dp)
                             .height(50.dp)
@@ -141,7 +146,7 @@ fun MainActivityScreen(handler: MainScreenHandler, viewModel: VoteViewModel = vi
                         contentDescription = null
                     )
                     Text(
-                        text = "${viewModel.getDownVoteCount}",
+                        text = "$downVoteCount",
                         style = Typography.bodyLarge
                     )
                 }
@@ -149,11 +154,12 @@ fun MainActivityScreen(handler: MainScreenHandler, viewModel: VoteViewModel = vi
                 Card(
                     modifier = Modifier
                         .padding(top = 16.dp)
-                        .clickable { handler.onToOtherScreenClicked() }
+                        .clickable { onToOtherScreenClicked() }
                 ) {
                     Text(
-                        text = "Игрок «Крыльев» Костанца объяснил, чего не хватило для победы в матче с «Химками»",
-                        modifier = Modifier.padding(16.dp)
+                        text = "Внимание!!! Врачи врут? Так ли вредны блины на самом деле, как пишут врачи?",
+                        modifier = Modifier.padding(16.dp),
+                        color = if (isRead) Color.Gray else Color.Black
                     )
                 }
             }
@@ -163,7 +169,7 @@ fun MainActivityScreen(handler: MainScreenHandler, viewModel: VoteViewModel = vi
 
 
 private fun shareArticle(context: Context) {
-    val shareText = "https://www.rbc.ru/life/news/65efe12c9a7947a5a9ef8566"
+    val shareText = "Привет посмотри статью https://www.rbc.ru/life/news/65efe12c9a7947a5a9ef8566"
     val sendIntent: Intent = Intent().apply {
         action = Intent.ACTION_SEND
         putExtra(Intent.EXTRA_TEXT, shareText)
@@ -176,13 +182,5 @@ private fun shareArticle(context: Context) {
 @Preview(showBackground = true)
 @Composable
 fun MainScreenPreview() {
-    MainActivityScreen(handler = object : MainScreenHandler {
-        override fun onToOtherScreenClicked() {
-
-        }
-
-        override fun onToShareClicked() {
-
-        }
-    })
+    MainActivityScreen()
 }

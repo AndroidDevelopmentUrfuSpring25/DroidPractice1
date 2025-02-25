@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "ru.urfu.droidpractice1"
-        minSdk = 28
+        minSdk = 24
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -45,7 +45,6 @@ dependencies {
     implementation(libs.coil.compose)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation (libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
