@@ -12,7 +12,46 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:title="@string/article_title"
-        android:navigationIcon="@drawable/arrow_back" />
+        android:navigationIcon="@drawable/arrow_back"
+        android:title="@string/view_article_title" />
 
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextAppearance.Material3.BodyLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="@string/view_article_text_1" />
+
+            <ImageView
+                android:id="@+id/photo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/article_photo_description"/>
+
+            <TextView
+                style="@style/TextAppearance.Material3.BodyLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="@string/view_article_text_2" />
+
+            <Switch
+                android:id="@+id/read_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/read" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
