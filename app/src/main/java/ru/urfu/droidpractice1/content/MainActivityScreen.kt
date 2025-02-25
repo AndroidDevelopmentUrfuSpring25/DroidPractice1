@@ -4,11 +4,13 @@ package ru.urfu.droidpractice1.content
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -33,15 +35,21 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import ru.urfu.droidpractice1.R
 import ru.urfu.droidpractice1.model.ARTICLE_1_HERO_IMAGE_URL
+import ru.urfu.droidpractice1.model.ARTICLE_2_HERO_IMAGE_URL
 import ru.urfu.droidpractice1.ui.theme.DroidPractice1Theme
 import ru.urfu.droidpractice1.ui.theme.Typography
 
 @Composable
-fun MainActivityScreen(onShareClick: () -> Unit = {}, onOtherArticleClick: () -> Unit = {}, isRead: Boolean = false) {
+fun MainActivityScreen(
+    onShareClick: () -> Unit = {},
+    onOtherArticleClick: () -> Unit = {},
+    isRead: Boolean = false
+) {
     DroidPractice1Theme {
         Scaffold(modifier = Modifier
             .fillMaxSize()
@@ -72,25 +80,31 @@ fun MainActivityScreen(onShareClick: () -> Unit = {}, onOtherArticleClick: () ->
 }
 
 @Composable
-fun ArticleContent(modifier: Modifier, onOtherArticleClick: () -> Unit = {}, isRead: Boolean) {
+fun ArticleContent(
+    modifier: Modifier,
+    onOtherArticleClick: () -> Unit = {},
+    isRead: Boolean,
+    paragraphSpace: Dp = 24.dp,
+    lineSpace: Dp = 12.dp
+) {
     Column(
-        modifier = modifier.verticalScroll(rememberScrollState())
+        modifier = modifier.verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.spacedBy(paragraphSpace)
     ) {
-        Column(modifier = Modifier.padding(bottom = 24.dp)) {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
             Text(stringResource(R.string.article_1_title), style = Typography.titleLarge)
             LikesComponent()
         }
-        Column(modifier = Modifier.padding(bottom = 24.dp)) {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(lineSpace)
+        ) {
             Text(
                 stringResource(R.string.article_1_content_1),
                 style = Typography.bodyLarge,
-                modifier = Modifier.padding(bottom = 24.dp)
             )
             Text(stringResource(R.string.article_1_content_2), style = Typography.bodyLarge)
-            Text(
-                stringResource(R.string.article_1_content_3),
-                style = Typography.bodyLarge,
-            )
         }
         AsyncImage(
             model = ARTICLE_1_HERO_IMAGE_URL,
@@ -99,7 +113,13 @@ fun ArticleContent(modifier: Modifier, onOtherArticleClick: () -> Unit = {}, isR
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(8.dp))
         )
-        Column(modifier = Modifier.padding(vertical = 24.dp)) {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(lineSpace)
+        ) {
+            Text(
+                stringResource(R.string.article_1_content_3),
+                style = Typography.bodyLarge,
+            )
             Text(
                 stringResource(R.string.article_1_content_4),
                 style = Typography.bodyLarge,
@@ -111,7 +131,6 @@ fun ArticleContent(modifier: Modifier, onOtherArticleClick: () -> Unit = {}, isR
         }
         Text(stringResource(R.string.article_1_content_6), style = Typography.bodyLarge)
         OtherArticle(
-            modifier = Modifier.padding(top = 24.dp),
             onOtherArticleClick = onOtherArticleClick,
             isRead = isRead
         )
@@ -122,14 +141,18 @@ fun ArticleContent(modifier: Modifier, onOtherArticleClick: () -> Unit = {}, isR
 fun LikesComponent(modifier: Modifier = Modifier) {
     var likes by rememberSaveable { mutableIntStateOf(0) }
 
-    Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
-        IconButton(onClick = { likes++ }) {
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        IconButton(onClick = { likes++ }, modifier = Modifier.size(32.dp)) {
             Icon(
                 Icons.Filled.ThumbUp,
                 "Like"
             )
         }
-        IconButton(onClick = { likes-- }) {
+        IconButton(onClick = { likes-- }, modifier = Modifier.size(32.dp)) {
             Icon(
                 Icons.Filled.ThumbUp,
                 "Like",
@@ -141,25 +164,37 @@ fun LikesComponent(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun OtherArticle(modifier: Modifier = Modifier, onOtherArticleClick: () -> Unit = {}, isRead: Boolean = false) {
+fun OtherArticle(
+    modifier: Modifier = Modifier,
+    onOtherArticleClick: () -> Unit = {},
+    isRead: Boolean = false
+) {
     val textColor = if (isRead) {
         MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
     } else {
         MaterialTheme.colorScheme.onSurfaceVariant
     }
 
-    Column(
+    Row(
         modifier = modifier
             .clip(RoundedCornerShape(8.dp))
+            .background(MaterialTheme.colorScheme.surfaceVariant)
             .clickable(onClick = onOtherArticleClick)
+            .padding(12.dp),
+        verticalAlignment = Alignment.Top
     ) {
+        AsyncImage(
+            model = ARTICLE_2_HERO_IMAGE_URL,
+            contentDescription = null,
+            modifier = Modifier
+                .clip(RoundedCornerShape(16.dp))
+                .size(128.dp, 98.dp)
+        )
         Text(
             stringResource(R.string.article_2_title),
             style = Typography.bodyMedium,
             color = textColor,
-            modifier = Modifier
-                .background(MaterialTheme.colorScheme.surfaceVariant)
-                .padding(16.dp)
+            modifier = Modifier.padding(16.dp)
         )
     }
 }

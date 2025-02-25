@@ -8,11 +8,11 @@ import com.bumptech.glide.Glide
 import ru.urfu.droidpractice1.databinding.ActivitySecondBinding
 import ru.urfu.droidpractice1.model.ARTICLE_2_HERO_IMAGE_URL
 
+const val KEY_READ = "isRead"
+
 class SecondActivity : ComponentActivity() {
 
     private lateinit var binding: ActivitySecondBinding
-
-    private val prefs by lazy { getSharedPreferences("settings", MODE_PRIVATE) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,17 +20,16 @@ class SecondActivity : ComponentActivity() {
         val view = binding.root
         setContentView(view)
 
-        val isReadSwitch = binding.switchRead;
+        val readSwitch = binding.switchRead
 
-        isReadSwitch.isChecked = prefs.getBoolean("isRead", false)
+        readSwitch.isChecked = intent.getBooleanExtra(KEY_READ, false)
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 val intent = Intent().apply {
-                    putExtra("isRead", isReadSwitch.isChecked)
+                    putExtra(KEY_READ, readSwitch.isChecked)
                 }
                 setResult(RESULT_OK, intent)
-                prefs.edit().putBoolean("isRead", isReadSwitch.isChecked).apply()
                 finish()
             }
         })
