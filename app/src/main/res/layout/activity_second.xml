@@ -8,6 +8,28 @@
     android:orientation="vertical"
     tools:context=".SecondActivity">
 
+    <ImageView
+        android:id="@+id/article_image"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/liverpool" />
+
+    <TextView
+        android:id="@+id/articleText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:paddingTop="8dp" />
+
+    <Button
+        android:id="@+id/okunduButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/okundu_olarak_i_aretle"
+        android:layout_marginTop="16dp" />
+
+
     <Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"

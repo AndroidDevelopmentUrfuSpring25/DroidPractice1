@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">DroidPractice1</string>
     <string name="article_title">Статья</string>
+    <string name="makale_2">Makale 2</string>
+    <string name="image_desc">Makale ile ilgili görsel</string>
+    <string name="makale_2_icerik">Bu ikinci makalenin içeriğidir. Buraya istediğin içeriği yazabilirsin.</string>
+    <string name="okundu_button">Okundu olarak işaretle</string>
+    <string name="okundu_olarak_i_aretle">Okundu olarak işaretle</string>
+
 </resources>
