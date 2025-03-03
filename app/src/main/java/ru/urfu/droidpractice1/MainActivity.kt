@@ -16,7 +16,7 @@ public val ArticleLink = "https://www.championat.com/hockey/news-5921648-37-letn
 
 class MainActivity : ComponentActivity() {
 
-    public var isRead by mutableStateOf(false)
+    private var isRead by mutableStateOf(false)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
