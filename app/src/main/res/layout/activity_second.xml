@@ -12,7 +12,89 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:title="@string/article_title"
+        android:title="@string/article_title_toolbar"
         android:navigationIcon="@drawable/arrow_back" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp">
+
+        <LinearLayout
+            android:id="@+id/articleContentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/articleTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="@string/second_article_title"
+                android:textIsSelectable="true"
+                style="@style/TitleText" />
+
+            <TextView
+                android:id="@+id/articleParagraph1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="@string/second_article_paragraph_1"
+                android:textIsSelectable="true"
+                style="@style/BodyText" />
+
+            <ImageView
+                android:id="@+id/articleImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:contentDescription="@string/image_description" />
+
+            <TextView
+                android:id="@+id/articleParagraph2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="@string/second_article_paragraph_2"
+                android:textIsSelectable="true"
+                style="@style/BodyText" />
+
+            <TextView
+                android:id="@+id/articleParagraph3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="@string/second_article_paragraph_3"
+                android:textIsSelectable="true"
+                style="@style/BodyText" />
+
+            <LinearLayout
+                android:id="@+id/articleReadLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/articleTextRead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/article_read"
+                    android:textColor="@color/body_text_color"
+                    android:textSize="14sp" />
+
+                <Switch
+                    android:id="@+id/articleSwitchRead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
