@@ -29,75 +29,76 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Информация о возвышениях"
-                android:textSize="20sp"
+                android:text="@string/heading2"
+                style="@style/HeaderText"
                 />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Insight I"
-                android:textSize="16sp"
-                android:layout_marginTop="16dp"
+                android:text="@string/insight_1"
+                style="@style/Subtitle_1"
                 />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Вступая в бой, получает 8 'дух. оболочек'. 20% шанс получить Moxie при их применении . Когда вы извлекаете 'дух. оболочки', все союзники получают исцеление (количество извлеченных 'дух. оболочек'  x ATK Фатуту x 30%) HP. Когда враг повержен, Фатуту получает с него все оставшиеся 'дух. оболочки'."
-                android:textSize="14sp"
-                android:layout_marginTop="5dp"
+                android:text="@string/insight_1_description"
+                style="@style/SimpleText"
                 />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Insight II"
-                android:textSize="16sp"
-                android:layout_marginTop="16dp"
+                android:text="@string/insight_2"
+                style="@style/Subtitle_1"
                 />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ATK +5% при вступлении в бой."
-                android:textSize="14sp"
-                android:layout_marginTop="5dp"
+                android:text="@string/insight_2_description"
+                style="@style/SimpleText"
                 />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Insight III"
-                android:textSize="16sp"
-                android:layout_marginTop="16dp"
+                android:text="@string/insight_3"
+                style="@style/Subtitle_1"
                 />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Вступая в бой, дополнительно получает 4 'дух. оболочки'. После применения или получения 7 оболочек, накладывает заклинание 1 ранга 'Неукротимые трещины' на противника с наибольшим количеством 'дух. оболочек'."
-                android:textSize="14sp"
-                android:layout_marginTop="5dp"
+                android:text="@string/insight_3_description"
+                style="@style/SimpleText"
                 />
+
+            <ImageView
+                android:id="@+id/Fatutu_2_img"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="20dp"
+                android:scaleType="centerCrop"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Отзыв"
-                android:textSize="20sp"
+                android:text="@string/comment"
+                style="@style/HeaderText"
                 android:layout_marginTop="20dp"
                 />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="У нее есть пассивное исцеление, очищение всей команды по требованию, бафф, который распределяет урон, получаемый командой (что может помочь предотвратить ваншот), и она повышает урон команд с дополнительными действиями (FUA)"
-                android:textSize="14sp"
-                android:layout_marginTop="5dp"
+                android:text="@string/comment_description"
+                style="@style/QuoteText"
                 />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Прочитано"
-                android:layout_marginTop="10dp"/>
+                android:text="@string/switch_read"
+                android:layout_marginTop="10dp"
+                style="@style/SimpleText"/>
 
         </LinearLayout>
 
