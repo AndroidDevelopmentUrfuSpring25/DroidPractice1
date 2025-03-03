@@ -3,6 +3,8 @@
 package ru.urfu.droidpractice1.content
 
 //import android.graphics.fonts.FontStyle
+import android.content.Context
+import android.content.Intent
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -12,15 +14,20 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -41,7 +48,8 @@ fun MainActivityScreen() {
                         Text(
                             text = stringResource(id = R.string.article_title)
                         )
-                    }
+                    } ,
+                    actions = { ShareButton(getArticleText()) }
                 )
             }) { innerPadding ->
             Box(
@@ -119,4 +127,45 @@ fun DownloadImg(imageUrl: String) {
             .fillMaxWidth()
             .height(200.dp)
     )
+}
+
+@Composable
+fun ShareButton(articleText: String) {
+    val context = LocalContext.current
+
+    IconButton(
+        onClick = { shareArticle(context, articleText) }
+    ) {
+        Icon(
+            imageVector = Icons.Default.Share,
+            contentDescription = "Поделиться"
+        )
+    }
+}
+
+/**
+ * Упаковывает текст статьи и вызывает окно выбора мессенжера
+ */
+fun shareArticle(context: Context, articleText: String) {
+    val sendIntent = Intent().apply {
+        action = Intent.ACTION_SEND
+        putExtra(Intent.EXTRA_TEXT, articleText)
+        type = "text/plain"
+    }
+    val shareIntent = Intent.createChooser(sendIntent, "Поделиться статьей")
+    context.startActivity(shareIntent)
+}
+
+/**
+ * Собирает текст статьи
+ */
+@Composable
+fun getArticleText(): String {
+    val abilitiesStringList = DataMainActivity.abilities.map { ability ->
+        "${ability.name}\n${ability.type}\n${ability.description}"}
+    return """
+        ${stringResource(id = R.string.heading1)}
+        ${stringResource(id = R.string.general_description)}
+        ${abilitiesStringList.joinToString("\n\n")}
+    """
 }
