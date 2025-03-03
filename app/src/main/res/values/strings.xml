@@ -1,4 +1,37 @@
 <resources>
     <string name="app_name">DroidPractice1</string>
+
     <string name="article_title">Статья</string>
+
+    <string name="article2_title">Первые приложения\nна Swift</string>
+
+    <string name="article2_text1">В 2014 году Apple представила Swift – язык,
+        сделанный для упрощения разработки благодаря понятному синтаксису, скорости и безопасности.
+        Очень скоро его стали применять во множестве проектов, и в App Store появились
+        первые приложения, полностью или частично созданные на Swift.</string>
+
+    <string name="article2_text2_title">WWDC App</string>
+
+    <string name="article2_text2">Официальное приложение Apple для конференции WWDC
+        продемонстрировало, как Swift помогает писать чистый и безопасный код,
+        сокращая время разработки. Пользователи получили удобное расписание событий и доступ
+        к видеозаписям докладов в реальном времени.</string>
+
+    <string name="article2_text3_title">LinkedIn</string>
+
+    <string name="article2_text3">Социальная сеть LinkedIn обновила свое iOS-приложение,
+        частично перейдя на Swift. Это ускорило добавление новых функций и улучшило взаимодействие
+        внутри команды, обеспечивая пользователям более стабильную и быструю работу.</string>
+
+    <string name="article2_text4_title">Yahoo Weather</string>
+
+    <string name="article2_text4">Команда Yahoo переписала часть Yahoo Weather на Swift,
+        избежав множества ошибок благодаря безопасному синтаксису и опциональным значениям.
+        Приложение стало более отзывчивым и лучше оптимизированным под последние версии iOS.</string>
+
+    <string name="article2_is_read">Прочитано</string>
+
+    <string name="article2_photo_wwdc">wwdc</string>
+    <string name="article2_photo_linkedin">linkedin</string>
+    <string name="article2_photo_yahoo">yahoo weather</string>
 </resources>
