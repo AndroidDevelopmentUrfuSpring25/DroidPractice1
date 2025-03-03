@@ -15,7 +15,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:navigationIcon="@drawable/arrow_back"
-        android:title="Статья 1" />
+        android:title="Статья" />
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -32,6 +32,7 @@
                 style="@style/TextAppearance.Material3.HeadlineLarge"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="center"
                 android:text="@string/article2_title"
                 android:textColor="@color/black" />
 
@@ -42,7 +43,9 @@
                 android:layout_marginBottom="20dp"
                 android:justificationMode="inter_word"
                 android:text="@string/article2_text1"
-                android:textAlignment="viewStart" />
+                android:textAlignment="viewStart"
+                android:textAllCaps="false"
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/image1"
@@ -58,6 +61,7 @@
                 android:justificationMode="inter_word"
                 android:text="@string/article2_text2_cursiv"
                 android:textAlignment="viewStart"
+                android:textSize="20sp"
                 android:textStyle="italic" />
 
             <TextView
@@ -69,6 +73,17 @@
                 android:textAlignment="viewStart"
                 android:justificationMode="inter_word"/>
 
+
+            <TextView
+                style="@style/TextAppearance.Material3.BodyLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:justificationMode="inter_word"
+                android:text="@string/article2_text3_cursiv"
+                android:textAlignment="viewStart"
+                android:textSize="20sp"
+                android:textStyle="italic" />
 
             <TextView
                 style="@style/TextAppearance.Material3.BodyLarge"
