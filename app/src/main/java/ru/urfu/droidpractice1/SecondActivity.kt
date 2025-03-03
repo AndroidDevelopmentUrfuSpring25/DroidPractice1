@@ -4,7 +4,6 @@ import androidx.activity.ComponentActivity
 import android.os.Bundle
 import ru.urfu.droidpractice1.databinding.ActivitySecondBinding
 import com.bumptech.glide.Glide
-import ru.urfu.droidpractice1.model.ARTICLE2_IMAGE_URL
 
 class SecondActivity : ComponentActivity() {
 
@@ -19,22 +18,30 @@ class SecondActivity : ComponentActivity() {
 
         binding.toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
 
-        Glide.with(binding.photo)
+        Glide.with(binding.photo1)
             .asBitmap()
-            .load(ARTICLE2_IMAGE_URL)
-            .into(binding.photo)
+            .load(getString(R.string.article_2_photo_1))
+            .into(binding.photo1)
+        Glide.with(binding.photo2)
+            .asBitmap()
+            .load(getString(R.string.article_2_photo_2))
+            .into(binding.photo2)
+        Glide.with(binding.photo3)
+            .asBitmap()
+            .load(getString(R.string.article_2_photo_3))
+            .into(binding.photo3)
 
         binding.readSwitch.setOnCheckedChangeListener { _, isChecked ->
             isReadChecked = isChecked
         }
     }
 
-//    override fun onSaveInstanceState(outState: Bundle) {
-//        outState.putBoolean(IS_ARTICLE2_READ, isReadChecked)
-//        super.onSaveInstanceState(outState)
-//    }
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putBoolean(IS_SECOND_ARTICLE_READ, isReadChecked)
+        super.onSaveInstanceState(outState)
+    }
 
     companion object {
-        private const val IS_ARTICLE2_READ = "IS_ARTICLE2_READ"
+        private const val IS_SECOND_ARTICLE_READ = "IS_SECOND_ARTICLE_READ"
     }
 }

@@ -19,28 +19,55 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:orientation="vertical">
 
-            <TextView
-                style="@style/TextAppearance.Material3.HeadlineLarge"
+            <com.google.android.material.card.MaterialCardView
+                android:theme="@style/Theme.MaterialComponents"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/article2_title"
-                android:textColor="@color/black"/>
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/black"
+                app:cardCornerRadius="10dp"
+                app:strokeColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:orientation="vertical"
+                    android:paddingVertical="16dp">
+
+                    <TextView
+                        style="@style/TextAppearance.Material3.HeadlineLarge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/article_2_title"/>
+
+                    <TextView
+                        style="@style/TextAppearance.Material3.BodyLarge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/article_2_description"/>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
 
             <TextView
-                style="@style/TextAppearance.Material3.BodyLarge"
+                style="@style/TextAppearance.Material3.TitleLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/article2_first_paragraph" />
+                android:text="@string/article_2_subtitle_1" />
 
             <ImageView
-                android:id="@+id/photo"
+                android:id="@+id/photo1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -48,16 +75,61 @@
                 style="@style/TextAppearance.Material3.BodyLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/article2_second_paragraph" />
+                android:text="@string/article_2_text_1" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp">
+            </Space>
+
+            <TextView
+                style="@style/TextAppearance.Material3.TitleLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/article_2_subtitle_2" />
+
+            <ImageView
+                android:id="@+id/photo2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                style="@style/TextAppearance.Material3.BodyLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/article_2_text_2" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp">
+            </Space>
+
+            <TextView
+                style="@style/TextAppearance.Material3.TitleLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/article_2_subtitle_3" />
+
+            <ImageView
+                android:id="@+id/photo3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                style="@style/TextAppearance.Material3.BodyLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/article_2_text_3" />
 
             <Switch
                 android:id="@+id/readSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/article2_read" />
+                android:text="@string/article_2_read" />
 
         </LinearLayout>
+
     </ScrollView>
 
 </LinearLayout>
