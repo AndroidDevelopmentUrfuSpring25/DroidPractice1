@@ -2,7 +2,7 @@
 
 ### Демонстрация результата:
 
-![gif](assets/Screen_recording_20250304_061156.gif)
+![gif](https://github.com/AndroidDevelopmentUrfuSpring25/DroidPractice1/blob/5840e2434842a428d04a89550558b49e1c3fac75/app/src/main/assets/Screen_recording_20250304_061156.gif))
 
 В этой практике вам предстоит поработать с основными компонентами Android и сделать первые разметки - на Compose и Views (XML). 
 
