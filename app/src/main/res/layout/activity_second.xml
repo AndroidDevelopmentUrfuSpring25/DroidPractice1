@@ -32,7 +32,7 @@
                 android:id="@+id/article_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/mainHeading"
+                android:text="@string/mainHeadingSecondPage"
                 android:textSize="@dimen/fontTitle"
                 android:textStyle="bold"
                 android:layout_marginBottom="30dp"
@@ -50,7 +50,7 @@
                 android:id="@+id/article_1text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/firstParagraph"
+                android:text="@string/firstParagraphSecondPage"
                 android:textSize="@dimen/fontText"
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -60,7 +60,7 @@
                 android:id="@+id/article_2text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/secondParagraph"
+                android:text="@string/secondParagraphSecondPage"
                 android:textSize="@dimen/fontText"
                 android:textColor="@color/black"/>
 
@@ -77,7 +77,7 @@
                 android:id="@+id/article_3text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/thirdParagraph"
+                android:text="@string/thirdParagraphSecondPage"
                 android:textSize="@dimen/fontText"
                 android:textColor="@color/black"
                 android:textStyle="bold"/>
@@ -85,7 +85,7 @@
                 android:id="@+id/article_4text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/fourthParagraph"
+                android:text="@string/fourthParagraphSecondPage"
                 android:textSize="@dimen/fontText"
                 android:textColor="@color/black"
                 android:paddingBottom="@dimen/textPadding"/>
@@ -94,7 +94,7 @@
                 android:id="@+id/article_5text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/fifthParagraph"
+                android:text="@string/fifthParagraphSecondPage"
                 android:textSize="@dimen/fontText"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
@@ -103,10 +103,17 @@
                 android:id="@+id/article_6text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/sixthParagraph"
+                android:text="@string/sixthParagraphSecondPage"
                 android:textSize="@dimen/fontText"
                 android:textColor="@color/black"/>
 
+            <Switch
+                android:id="@+id/switchRead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Прочитано"
+                android:layout_marginTop="16dp"
+                android:layout_gravity="start"/>
         </LinearLayout>
     </ScrollView>
 
