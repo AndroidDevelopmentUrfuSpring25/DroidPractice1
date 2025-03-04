@@ -3,6 +3,7 @@ package ru.urfu.droidpractice1
 import android.content.Intent
 import androidx.activity.ComponentActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.addCallback
 import com.bumptech.glide.Glide
 import ru.urfu.droidpractice1.databinding.ActivitySecondBinding
@@ -29,13 +30,15 @@ class SecondActivity : ComponentActivity() {
 
         Glide.with(binding.photo)
             .asBitmap()
-            .load(resources.getString(R.string.image_rul))
+            .load(resources.getString(R.string.image_url))
             .into(binding.photo)
 
         onBackPressedDispatcher.addCallback(this) {
             setResult(RESULT_OK, Intent().apply { putExtra(KEY_READ, read) })
             finish()
         }
+
+        Log.d("SecondActivity", "onCreate()")
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -50,5 +53,35 @@ class SecondActivity : ComponentActivity() {
 
     companion object {
         const val KEY_READ = "read"
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d("SecondActivity", "onStart()")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("SecondActivity", "onResume()")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("SecondActivity", "onPause()")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("SecondActivity", "onStop()")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d("SecondActivity", "onRestart()")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("SecondActivity", "onDestroy()")
     }
 }
