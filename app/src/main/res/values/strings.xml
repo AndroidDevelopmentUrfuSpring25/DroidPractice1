@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">DroidPractice1</string>
     <string name="article_title">Статья</string>
+    <string name="second_article_title">Вторая статья</string>
+    <string name="second_article_author">Кевин Purge Годек</string>
+    <string name="second_article_header">Purge о DDoS-атакe в гранд-финале DreamLeague S25: «Рад, что подобное редко встречается в наши дни»</string>
+    <string name="second_article_content">Если DDoS подтвердится, очень грустно, что игроки, зрители и организаторы пострадали из-за того, что чья-то проблема с азартными играми вышла из-под контроля и вызвала расстройство. Я рад, что подобное редко встречается в наши дни.</string>
+    <string name="read">Прочитано</string>
+    <string name="first_article_header1">Самый легендарный гранд-финал в истории Dota 2 — что случилось в матче Tundra и Team Spirit на DreamLeague Season 25</string>
+    <string name="first_article_par1">Несмотря на то что по расписанию DreamLeague Season 25 по Dota 2 уже должен был завершиться, мы всё еще не знаем чемпиона. Всё из-за того, что во время гранд-финала ивента Team Spirit подверглась DDoS-атаке. В результате серию пришлось прервать. Для тех, кто не следил за развитием истории, мы подготовили хронологию событий. </string>
+    <string name="first_article_date">03.03.2025</string>
+    <string name="first_article_header2">Первая пауза</string>
+    <string name="first_article_par2">Проблемы начались во время четвертой карты, когда Spirit вела у Tundra Esports со счетом 2:1. На самой четвертой карте преимущество также было за Spirit. Перед первой паузой ростер из СНГ вел около 5 тыс. золота на 12-й минуте. Во многом это преимущество было в «пятерке» Warlock от Miposhka.</string>
+    <string name="first_article_par3">Проблемы возникли у двух игроков Spirit: Магомеда Collapse Халилова и Дениса larl Сигитова. Они отключились и не могли вернуться в матч.</string>
 </resources>
