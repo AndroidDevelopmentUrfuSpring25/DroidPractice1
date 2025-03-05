@@ -5,8 +5,10 @@ package ru.urfu.droidpractice1.content
 //import android.graphics.fonts.FontStyle
 import android.content.Context
 import android.content.Intent
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,6 +18,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.filled.ThumbUp
+import androidx.compose.material.icons.filled.ThumbDown
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -26,6 +30,11 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -61,6 +70,8 @@ fun MainActivityScreen() {
                         .verticalScroll(rememberScrollState())
                         .padding(30.dp)
                 ) {
+                    LikeDislikeButtons()
+                    Spacer(modifier = Modifier.height(16.dp))
                     Text(
                         text = stringResource(id = R.string.heading1),
                         fontSize = 20.sp,
@@ -87,13 +98,19 @@ fun MainActivityScreen() {
 }
 
 
-
+/**
+ * Выводит экран в Preview
+ */
 @Preview(showBackground = true)
 @Composable
 fun MainScreenPreview() {
     MainActivityScreen()
 }
 
+/**
+ * Вставляет систематизированный текст
+ * @param ability - экземпляр класса способностей персонажа
+ */
 @Composable
 fun AbilityItem(ability: Ability) {
     Column(modifier = Modifier
@@ -118,6 +135,9 @@ fun AbilityItem(ability: Ability) {
     }
 }
 
+/**
+ * Вставляет изображение по URL
+ */
 @Composable
 fun DownloadImg(imageUrl: String) {
     AsyncImage(
@@ -129,6 +149,9 @@ fun DownloadImg(imageUrl: String) {
     )
 }
 
+/**
+ * Реализует кнопку "поделиться"
+ */
 @Composable
 fun ShareButton(articleText: String) {
     val context = LocalContext.current
@@ -168,4 +191,28 @@ fun getArticleText(): String {
         ${stringResource(id = R.string.general_description)}
         ${abilitiesStringList.joinToString("\n\n")}
     """
+}
+
+/**
+ * Кнопки лайков и дизлайков с счетчиком
+ */
+@Composable
+fun LikeDislikeButtons() {
+    var likes by remember { mutableStateOf(0) }
+    var dislikes by remember { mutableStateOf(0) }
+
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        IconButton(onClick = { likes++ }) {
+            Icon(imageVector = Icons.Default.ThumbUp, contentDescription = "Like")
+        }
+        Text(text = "$likes", fontSize = 18.sp)
+
+        IconButton(onClick = { dislikes++ }) {
+            Icon(imageVector = Icons.Default.ThumbDown, contentDescription = "Dislike")
+        }
+        Text(text = "$dislikes", fontSize = 18.sp)
+    }
 }
