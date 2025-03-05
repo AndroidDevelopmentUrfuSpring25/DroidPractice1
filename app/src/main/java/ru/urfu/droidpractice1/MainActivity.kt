@@ -21,8 +21,14 @@ class MainActivity : ComponentActivity() {
             }
         }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean(KEY_READ, isRead)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        isRead = savedInstanceState?.getBoolean(KEY_READ) ?: false
         setContent {
             MainActivityScreen(
                 onShareClick = { shareArticle() },
