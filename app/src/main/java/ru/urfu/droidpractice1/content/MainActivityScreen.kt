@@ -20,6 +20,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.material.icons.filled.ThumbDown
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -46,9 +47,13 @@ import ru.urfu.droidpractice1.R
 import ru.urfu.droidpractice1.ui.theme.DroidPractice1Theme
 import coil.compose.AsyncImage
 import androidx.compose.ui.text.font.FontStyle
+import androidx.core.content.ContextCompat.startActivity
+import ru.urfu.droidpractice1.MainActivity
+import ru.urfu.droidpractice1.SecondActivity
 
 @Composable
 fun MainActivityScreen() {
+    val context = LocalContext.current
     DroidPractice1Theme {
         Scaffold(modifier = Modifier.fillMaxSize(),
             topBar = {
@@ -68,29 +73,38 @@ fun MainActivityScreen() {
                     modifier = Modifier
                         .fillMaxSize()
                         .verticalScroll(rememberScrollState())
-                        .padding(30.dp)
+                        .padding(30.dp),
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     LikeDislikeButtons()
-                    Spacer(modifier = Modifier.height(16.dp))
+//                    Spacer(modifier = Modifier.height(16.dp))
                     Text(
                         text = stringResource(id = R.string.heading1),
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.fillMaxWidth()
                     )
-                    Spacer(modifier = Modifier.height(16.dp))
+//                    Spacer(modifier = Modifier.height(16.dp))
                     Text(
                         text = stringResource(id = R.string.general_description),
                         fontSize = 16.sp,
                         modifier = Modifier.fillMaxWidth()
                     )
-                    Spacer(modifier = Modifier.height(16.dp))
+//                    Spacer(modifier = Modifier.height(16.dp))
                     DownloadImg(DataMainActivity.imageUrl)
-                    Spacer(modifier = Modifier.height(16.dp))
-                    DataMainActivity.abilities.forEach { ability ->
-                        AbilityItem(ability)
-                        Spacer(modifier = Modifier.height(12.dp))
+//                    Spacer(modifier = Modifier.height(16.dp))
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        verticalArrangement = Arrangement.spacedBy(12.dp)
+                    )
+                    {
+                        DataMainActivity.abilities.forEach { ability ->
+                            AbilityItem(ability)
+//                            Spacer(modifier = Modifier.height(12.dp))
+                        }
                     }
+                    TransferTwoArticleButton(context)
                 }
             }
         }
@@ -202,8 +216,9 @@ fun LikeDislikeButtons() {
     var dislikes by remember { mutableStateOf(0) }
 
     Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         IconButton(onClick = { likes++ }) {
             Icon(imageVector = Icons.Default.ThumbUp, contentDescription = "Like")
@@ -214,5 +229,18 @@ fun LikeDislikeButtons() {
             Icon(imageVector = Icons.Default.ThumbDown, contentDescription = "Dislike")
         }
         Text(text = "$dislikes", fontSize = 18.sp)
+    }
+}
+
+/**
+ * Кнопка перехода на вторую статью
+ */
+@Composable
+fun TransferTwoArticleButton(context:Context){
+    Button(onClick = {
+        val intent = Intent(context, SecondActivity::class.java)
+        context.startActivity(intent)
+    }) {
+        Text("Читать о возвышениях")
     }
 }
