@@ -1,35 +1,47 @@
 <resources>
     <string name="app_name">DroidPractice1</string>
-    <string name="article_title">Статья</string>
 
-    <!-- Статья 2 -->
-    <string name="article_2_title">Лечимся (тьфу-тьфу)</string>
-    <string name="article_2_description">Болеть плохо. Если вы работаете, то потеряете в деньгах, потому что за время болезни получите меньше обычной зарплаты,
+    <!-- Страница курса -->
+    <string name="course_photo">https://opis-cdn.tinkoffjournal.ru/urania-api/d16c46bc.pro_zhizn_main_cover.png?preset=urania_cover_760x380_2x</string>
+    <string name="course_title">Как быть взрослым</string>
+    <string name="course_description">Бесплатный курс Т—Ж о том, чему не учат в школе: как жить взрослую, самостоятельную и независимую жизнь и не сойти с ума в процессе</string>
+    <string name="course_subtitle">Программа курса</string>
+    <string name="program_description">В девяти текстовых уроках разбираем главное, с чем сталкивается любой житель России старше 18 лет: съем квартиры, оплата услуг ЖКХ,
+        оформление документов и ОМС, поиск работы, налоги и деньги. 
+        После курса вы сможете быть уверенными, что трудности взрослой жизни не застанут вас врасплох.</string>
+    <string name="lesson_card_title">Лечимся (тьфу-тьфу)</string>
+    <string name="lesson_card_photo">https://opis-cdn.tinkoffjournal.ru/urania-api/942e6d57.4_zdorovie_minicover.png?preset=urania_icon_95x95_2x</string>
+    <string name="lesson_card_description">Как получить медицинскую помощь.\nЗа что можно вернуть деньги.\nКак следить за здоровьем</string>
+
+    <!-- Урок -->
+    <string name="lesson_toolbar_title">Как лечиться в России</string>
+    <string name="lesson_title">Лечимся (тьфу-тьфу)</string>
+    <string name="lesson_description">Болеть плохо. Если вы работаете, то потеряете в деньгах, потому что за время болезни получите меньше обычной зарплаты,
         а если учитесь, то пропустите лекции, и потом придется подтягивать хвосты.
         Государство не хочет, чтобы люди болели и умирали, поэтому поддерживает медицину.
         В этом уроке расскажем, как почувствовать на себе эту поддержку.</string>
-    <string name="article_2_read">Прочитано</string>
+    <string name="lesson_read">Прочитано</string>
     
-    <string name="article_2_subtitle_1">Как получить медицинскую помощь</string>
-    <string name="article_2_photo_1">https://opis-cdn.tinkoffjournal.ru/mercury/pro-millenials-lesson4-02.9mhnqxjajmnx..png?preset=image_570w_2x</string>
-    <string name="article_2_text_1">В России медицинская помощь предоставляется по ОМС, для этого нужно оформить полис в страховой компании, МФЦ или на госуслугах.
+    <string name="lesson_subtitle_1">Как получить медицинскую помощь</string>
+    <string name="lesson_photo_1">https://opis-cdn.tinkoffjournal.ru/mercury/pro-millenials-lesson4-02.9mhnqxjajmnx..png?preset=image_570w_2x</string>
+    <string name="lesson_text_1">В России медицинская помощь предоставляется по ОМС, для этого нужно оформить полис в страховой компании, МФЦ или на госуслугах.
         С ним можно прикрепиться к поликлинике и записываться к врачу по телефону, через интернет или госуслуги.
         Полис ДМС позволяет лечиться в частных клиниках, но не покрывает все услуги.
         В экстренных случаях помощь оказывается бесплатно, а при лечении важно обращаться к врачам,
         а не к сомнительным источникам.</string>
 
-    <string name="article_2_subtitle_2">Что дает полис ОМС</string>
-    <string name="article_2_photo_2">https://opis-cdn.tinkoffjournal.ru/mercury/4-zdorovie-cxema-checklist-png.png?preset=image_570w_2x</string>
-    <string name="article_2_text_2">Полис ОМС обеспечивает бесплатную медицинскую помощь в рамках базовой программы по всей России,
+    <string name="lesson_subtitle_2">Что дает полис ОМС</string>
+    <string name="lesson_photo_2">https://opis-cdn.tinkoffjournal.ru/mercury/4-zdorovie-cxema-checklist-png.png?preset=image_570w_2x</string>
+    <string name="lesson_text_2">Полис ОМС обеспечивает бесплатную медицинскую помощь в рамках базовой программы по всей России,
         включая экстренные случаи, медосмотры, консультации специалистов и лечение определенных заболеваний,
         но регионы могут дополнять ее территориальными программами.
         Лечение в частных клиниках возможно, если они работают с ОМС, но с ограничениями.
         Бесплатная помощь предоставляется при угрозе жизни и здоровью, а за косметические процедуры, ортодонтию и некоторые анализы придется платить.
         В частных клиниках по ОМС могут быть очереди, а за некоторые медицинские услуги и лекарства можно частично вернуть деньги.</string>
 
-    <string name="article_2_subtitle_3">За что можно вернуть деньги</string>
-    <string name="article_2_photo_3">https://opis-cdn.tinkoffjournal.ru/mercury/pro-millenials-lesson4-07.zqjlfnmoi56h..png?preset=image_570w_2x</string>
-    <string name="article_2_text_3">Если вы платите НДФЛ, можете вернуть часть расходов на лечение и лекарства через налоговый вычет: до 19 500 ₽ в год с трат до 150 000 ₽, а за дорогостоящее лечение — 13% без ограничений.
+    <string name="lesson_subtitle_3">За что можно вернуть деньги</string>
+    <string name="lesson_photo_3">https://opis-cdn.tinkoffjournal.ru/mercury/pro-millenials-lesson4-07.zqjlfnmoi56h..png?preset=image_570w_2x</string>
+    <string name="lesson_text_3">Если вы платите НДФЛ, можете вернуть часть расходов на лечение и лекарства через налоговый вычет: до 19 500 ₽ в год с трат до 150 000 ₽, а за дорогостоящее лечение — 13% без ограничений.
         Для вычета нужны справка из клиники, рецепт или выписка, а также чеки. Налог можно вернуть даже за материалы при бесплатной операции.
         Также государство предоставляет бесплатные обследования, даже если вы здоровы.</string>
 </resources>

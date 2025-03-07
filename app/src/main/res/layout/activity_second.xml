@@ -12,7 +12,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:title="@string/article_title"
+        android:title="@string/lesson_toolbar_title"
         android:navigationIcon="@drawable/arrow_back" />
 
     <ScrollView
@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="@color/black"
+                app:cardBackgroundColor="@color/dark_grey"
                 app:cardCornerRadius="10dp"
                 app:strokeColor="@color/white">
 
@@ -48,13 +48,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                        android:text="@string/article_2_title"/>
+                        android:text="@string/lesson_title"/>
 
                     <TextView
                         style="@style/TextAppearance.Material3.BodyLarge"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/article_2_description"/>
+                        android:text="@string/lesson_description"/>
 
                 </LinearLayout>
 
@@ -64,18 +64,19 @@
                 style="@style/TextAppearance.Material3.TitleLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/article_2_subtitle_1" />
+                android:text="@string/lesson_subtitle_1" />
 
             <ImageView
                 android:id="@+id/photo1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"/>
 
             <TextView
                 style="@style/TextAppearance.Material3.BodyLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/article_2_text_1" />
+                android:text="@string/lesson_text_1" />
 
             <Space
                 android:layout_width="match_parent"
@@ -86,18 +87,19 @@
                 style="@style/TextAppearance.Material3.TitleLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/article_2_subtitle_2" />
+                android:text="@string/lesson_subtitle_2" />
 
             <ImageView
                 android:id="@+id/photo2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"/>
 
             <TextView
                 style="@style/TextAppearance.Material3.BodyLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/article_2_text_2" />
+                android:text="@string/lesson_text_2" />
 
             <Space
                 android:layout_width="match_parent"
@@ -108,25 +110,26 @@
                 style="@style/TextAppearance.Material3.TitleLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/article_2_subtitle_3" />
+                android:text="@string/lesson_subtitle_3" />
 
             <ImageView
                 android:id="@+id/photo3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"/>
 
             <TextView
                 style="@style/TextAppearance.Material3.BodyLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/article_2_text_3" />
+                android:text="@string/lesson_text_3" />
 
             <Switch
                 android:id="@+id/readSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/article_2_read" />
+                android:text="@string/lesson_read"/>
 
         </LinearLayout>
 
