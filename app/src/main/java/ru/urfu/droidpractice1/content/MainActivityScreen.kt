@@ -21,6 +21,7 @@ import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.material.icons.filled.ThumbDown
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -31,12 +32,16 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -50,6 +55,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.core.content.ContextCompat.startActivity
 import ru.urfu.droidpractice1.MainActivity
 import ru.urfu.droidpractice1.SecondActivity
+import ru.urfu.droidpractice1.ui.theme.DataHolder
 
 @Composable
 fun MainActivityScreen() {
@@ -77,22 +83,18 @@ fun MainActivityScreen() {
                     verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     LikeDislikeButtons()
-//                    Spacer(modifier = Modifier.height(16.dp))
                     Text(
                         text = stringResource(id = R.string.heading1),
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.fillMaxWidth()
                     )
-//                    Spacer(modifier = Modifier.height(16.dp))
                     Text(
                         text = stringResource(id = R.string.general_description),
                         fontSize = 16.sp,
                         modifier = Modifier.fillMaxWidth()
                     )
-//                    Spacer(modifier = Modifier.height(16.dp))
                     DownloadImg(DataMainActivity.imageUrl)
-//                    Spacer(modifier = Modifier.height(16.dp))
                     Column(
                         modifier = Modifier
                             .fillMaxSize(),
@@ -101,7 +103,6 @@ fun MainActivityScreen() {
                     {
                         DataMainActivity.abilities.forEach { ability ->
                             AbilityItem(ability)
-//                            Spacer(modifier = Modifier.height(12.dp))
                         }
                     }
                     TransferTwoArticleButton(context)
@@ -212,8 +213,8 @@ fun getArticleText(): String {
  */
 @Composable
 fun LikeDislikeButtons() {
-    var likes by remember { mutableStateOf(0) }
-    var dislikes by remember { mutableStateOf(0) }
+    var likes by rememberSaveable  { mutableStateOf(0) }
+    var dislikes by rememberSaveable  { mutableStateOf(0) }
 
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -237,10 +238,24 @@ fun LikeDislikeButtons() {
  */
 @Composable
 fun TransferTwoArticleButton(context:Context){
+//    var isActive by remember { mutableStateOf(readSecondActivity) }
+    val readSecondActivity = remember { mutableStateOf(DataHolder.readSecondActivity) }
+
+    // Отслеживаем изменения в DataHolder
+    LaunchedEffect(DataHolder.readSecondActivity) {
+        snapshotFlow { DataHolder.readSecondActivity }.collect {
+        }
+    }
     Button(onClick = {
         val intent = Intent(context, SecondActivity::class.java)
+//        intent.putExtra("read_second_activity", readSecondActivity)
         context.startActivity(intent)
-    }) {
+    },
+        colors = ButtonDefaults.buttonColors(
+            containerColor = if (readSecondActivity.value) Color.Gray else Color.Blue
+        )) {
         Text("Читать о возвышениях")
     }
 }
+
+
