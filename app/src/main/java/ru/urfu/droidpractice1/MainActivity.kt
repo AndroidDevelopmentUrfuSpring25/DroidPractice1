@@ -10,7 +10,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.res.stringArrayResource
 import ru.urfu.droidpractice1.SecondActivity.Companion.KEY_COOKED
 import ru.urfu.droidpractice1.content.MainActivityScreen
 
@@ -31,7 +30,6 @@ class MainActivity : ComponentActivity() {
             MainActivityScreen(
                 rating,
                 cooked,
-                stringArrayResource(id = R.array.article_images),
                 ::onClickLike,
                 ::onClickDislike,
                 ::onClickShare,

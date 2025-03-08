@@ -12,6 +12,9 @@ import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.addCallback
 import com.bumptech.glide.Glide
+import ru.urfu.droidpractice1.data.Ingredient
+import ru.urfu.droidpractice1.data.RecipeMock
+import ru.urfu.droidpractice1.data.Step
 import ru.urfu.droidpractice1.databinding.ActivitySecondBinding
 
 
@@ -28,13 +31,9 @@ class SecondActivity : ComponentActivity() {
         setContentView(binding.root)
 
         cooked = intent.getBooleanExtra(KEY_COOKED, false)
-        val ingredientKeys = resources.getStringArray(R.array.recipe_ingredients_keys)
-        val ingredientValues = resources.getStringArray(R.array.recipe_ingredients_values)
-        val contentTexts = resources.getStringArray(R.array.recipe_text)
-        val contentImages = resources.getStringArray(R.array.recipe_images)
 
-        fillTable(binding.recipeTable, ingredientKeys, ingredientValues)
-        fillContent(binding.contentGroup, contentTexts, contentImages)
+        fillTable(binding.recipeTable, RecipeMock.recipe.ingredients)
+        fillContent(binding.contentGroup, RecipeMock.recipe.steps)
 
         binding.cookedSwitch.isChecked = cooked
         binding.cookedSwitch.setOnCheckedChangeListener { _, isChecked -> cooked = isChecked }
@@ -46,14 +45,13 @@ class SecondActivity : ComponentActivity() {
         }
     }
 
-    private fun fillTable(tableLayout: TableLayout, keys: Array<String>, values: Array<String>) {
-        if (keys.size != values.size) throw Exception()
-        for (i in keys.indices) {
+    private fun fillTable(tableLayout: TableLayout, ingredients: List<Ingredient>) {
+        for (ingredient in ingredients) {
             val key = TextView(this).apply {
-                text = keys[i]
+                text = ingredient.name
             }
             val value = TextView(this).apply {
-                text = values[i]
+                text = ingredient.amount
                 layoutParams = TableRow.LayoutParams().apply {
                     setMargins(0, 0, 0, 16)
                     gravity = Gravity.END
@@ -67,21 +65,16 @@ class SecondActivity : ComponentActivity() {
         }
     }
 
-    private fun fillContent(
-        contentGroup: LinearLayout,
-        texts: Array<String>,
-        images: Array<String>
-    ) {
-        if (texts.size != images.size) throw Exception()
-        for (i in texts.indices) {
+    private fun fillContent(contentGroup: LinearLayout, steps: List<Step>) {
+        for (step in steps) {
             val textView = TextView(this).apply {
-                text = texts[i]
+                text = step.description
                 layoutParams = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT
                 ).apply { setMargins(0, 16, 0, 64) }
             }
             val imageView = ImageView(this)
-            Glide.with(imageView).asBitmap().load(images[i]).into(imageView)
+            Glide.with(imageView).asBitmap().load(step.imageUrl).into(imageView)
             contentGroup.addView(imageView)
             contentGroup.addView(textView)
         }

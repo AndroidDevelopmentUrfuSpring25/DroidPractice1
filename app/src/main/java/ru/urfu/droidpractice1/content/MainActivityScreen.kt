@@ -2,8 +2,10 @@
 
 package ru.urfu.droidpractice1.content
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,10 +13,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.BottomAppBarDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -22,12 +24,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import ru.urfu.droidpractice1.R
@@ -37,9 +40,8 @@ import ru.urfu.droidpractice1.ui.theme.DroidPractice1Theme
 @OptIn(ExperimentalGlideComposeApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun MainActivityScreen(
-    rating: Int = 128,
+    rating: Int = 0,
     cooked: Boolean = false,
-    images: Array<String> = emptyArray(),
     onClickLike: () -> Unit = {},
     onClickDislike: () -> Unit = {},
     onClickShare: () -> Unit = {},
@@ -55,22 +57,6 @@ fun MainActivityScreen(
                             text = stringResource(id = R.string.article_title),
                             textAlign = TextAlign.Center,
                             modifier = Modifier.fillMaxWidth()
-                        )
-                    }
-                )
-            },
-            bottomBar = {
-                BottomAppBar(
-                    modifier = Modifier.clickable { onClickRecipe() },
-                    containerColor =
-                    if (cooked) BottomAppBarDefaults.containerColor
-                    else Color(255, 84, 1),
-                    content = {
-                        Text(
-                            text = stringResource(id = R.string.article_button_recipe),
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier.fillMaxWidth(),
-                            color = if (cooked) Color.Unspecified else Color.White
                         )
                     }
                 )
@@ -97,7 +83,7 @@ fun MainActivityScreen(
                     )
                     Text(
                         text = rating.toString(),
-                        fontSize = 24.sp
+                        fontSize = MaterialTheme.typography.titleLarge.fontSize
                     )
                     Icon(
                         painter = painterResource(R.drawable.ic_share),
@@ -113,7 +99,7 @@ fun MainActivityScreen(
                         .fillMaxWidth()
                 )
 
-                images.forEach {
+                stringArrayResource(id = R.array.article_images).forEach {
                     GlideImage(
                         model = it,
                         contentDescription = stringResource(R.string.images_description),
@@ -134,6 +120,23 @@ fun MainActivityScreen(
                         .padding(bottom = 16.dp)
                         .fillMaxWidth()
                 )
+
+                Box(
+                    modifier = Modifier
+                        .clickable { onClickRecipe() }
+                        .background(
+                            color = if (cooked) BottomAppBarDefaults.containerColor
+                            else colorResource(R.color.orange)
+                        )
+                        .padding(vertical = 32.dp)
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.article_button_recipe),
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth(),
+                        color = if (cooked) Color.Unspecified else Color.White
+                    )
+                }
             }
         }
     }
