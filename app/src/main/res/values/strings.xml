@@ -1,4 +1,17 @@
-<resources>
-    <string name="app_name">DroidPractice1</string>
-    <string name="article_title">Статья</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" tools:ignore="Typos">DroidPractice1</string>
+    <string name="cooked">Приготовлено</string>
+    <string name="images_description">Изображение</string>
+
+    <string name="article_title">Оладьи из тыквы</string>
+    <string name="article_text">Румяные, аппетитные, сочные, ярко-оранжевые! Сделать оладьи из тыквы очень просто и быстро. Это займёт совсем немного времени, самое трудоемкое - очистка овощей. Оладушки обязательно понравятся детям, ведь они получаются сладкими и без добавления сахара.</string>
+    <string-array name="article_images">
+        <item>https://static.1000.menu/img/content-v2/19/3f/622/oladi-iz-tjkvj_1602064384_11_max.jpg</item>
+        <item>https://static.1000.menu/img/content-v2/19/3f/622/oladi-iz-tjkvj_1602064384_12_max.jpg</item>
+        <item>https://static.1000.menu/img/content-v2/19/3f/622/oladi-iz-tjkvj_1602064384_13_max.jpg</item>
+    </string-array>
+    <string name="article_bzu">ККАЛ~83 Б~3 Ж~4 У~10 (100гр)</string>
+    <string name="article_link_desc">Взято с сайта 1000.menu</string>
+    <string name="article_link_url">https://1000.menu/cooking/622-oladi-iz-tjkvj</string>
+    <string name="article_button_recipe">Перейти к рецепту</string>
 </resources>
