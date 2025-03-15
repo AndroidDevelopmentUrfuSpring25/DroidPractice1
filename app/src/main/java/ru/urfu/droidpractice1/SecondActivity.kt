@@ -1,16 +1,16 @@
 package ru.urfu.droidpractice1
 
-import android.content.SharedPreferences
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import com.bumptech.glide.Glide
 import androidx.activity.ComponentActivity
+import com.bumptech.glide.Glide
 import ru.urfu.droidpractice1.databinding.ActivitySecondBinding
 
 class SecondActivity : ComponentActivity() {
 
     private lateinit var binding: ActivitySecondBinding
-    private lateinit var prefs: SharedPreferences
+    private var readStatus: Boolean = false
 
     companion object {
         private const val TAG = "SecondActivity"
@@ -24,18 +24,35 @@ class SecondActivity : ComponentActivity() {
         binding = ActivitySecondBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        prefs = getSharedPreferences("article_prefs", MODE_PRIVATE)
-        binding.toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
+        readStatus = savedInstanceState?.getBoolean(READ_STATUS_KEY, false)
+            ?: intent.getBooleanExtra(READ_STATUS_KEY, false)
+        binding.readSwitch.isChecked = readStatus
+
+        binding.readSwitch.setOnCheckedChangeListener { _, isChecked ->
+            readStatus = isChecked
+            Log.d(TAG, "Switch changed: $readStatus")
+        }
 
         Glide.with(this)
             .load(IMAGE_URL)
             .into(binding.articleImage)
 
-        binding.readSwitch.isChecked = prefs.getBoolean(READ_STATUS_KEY, false)
-        binding.readSwitch.setOnCheckedChangeListener { _, isChecked ->
-            prefs.edit().putBoolean(READ_STATUS_KEY, isChecked).apply()
-            Log.d(TAG, "Переключатель 'Прочитано' изменён: $isChecked")
+        binding.toolbar.setNavigationOnClickListener {
+            returnResultAndFinish()
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        returnResultAndFinish()
+    }
+
+    private fun returnResultAndFinish() {
+        val resultIntent = Intent().apply {
+            putExtra(READ_STATUS_KEY, readStatus)
+        }
+        setResult(RESULT_OK, resultIntent)
+        finish()
     }
 
     override fun onStart() {
@@ -61,5 +78,11 @@ class SecondActivity : ComponentActivity() {
     override fun onDestroy() {
         super.onDestroy()
         Log.d(TAG, "onDestroy")
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean(READ_STATUS_KEY, readStatus)
+        Log.d(TAG, "onSaveInstanceState: saved read_status = $readStatus")
     }
 }
