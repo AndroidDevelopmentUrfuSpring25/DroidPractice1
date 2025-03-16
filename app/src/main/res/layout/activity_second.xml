@@ -27,83 +27,49 @@
             android:padding="16dp">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:gravity="center"
-                android:text="@string/article_2_title"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                style="@style/TitleStyle"
+                android:text="@string/article_2_title" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:text="@string/article_2_intro"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
+                style="@style/TextStyle"
+                android:text="@string/article_2_intro" />
 
             <ImageView
                 android:id="@+id/image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
+                android:layout_marginBottom="@dimen/margin"
                 android:contentDescription="TODO" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:text="@string/article_2_battlemage"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
+                style="@style/TextStyle"
+                android:text="@string/article_2_battlemage" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:text="@string/article_2_b570"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
+                style="@style/TextStyle"
+                android:text="@string/article_2_b570" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:text="@string/article_2_b580"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
+                style="@style/TextStyle"
+                android:text="@string/article_2_b580" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:text="@string/article_2_limited"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
+                style="@style/TextStyle"
+                android:text="@string/article_2_limited" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:text="@string/article_2_efficiency"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
+                style="@style/TextStyle"
+                android:text="@string/article_2_efficiency" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:text="@string/article_2_conclusion"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
+                style="@style/TextStyle"
+                android:text="@string/article_2_conclusion" />
 
             <Switch
                 android:id="@+id/readSwitcher"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="@dimen/margin"
                 android:text="Статья прочитана"
                 tools:ignore="UseSwitchCompatOrMaterialXml" />
         </LinearLayout>

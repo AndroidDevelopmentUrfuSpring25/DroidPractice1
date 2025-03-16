@@ -13,17 +13,11 @@ import androidx.compose.runtime.setValue
 import ru.urfu.droidpractice1.content.MainActivityScreen
 
 const val KEY_READ = "isRead"
-const val KEY_LIKE_IS_PRESSED = "isLiked"
-const val KEY_DISLIKE_IS_PRESSED = "isDisliked"
-const val KEY_LIKE_COUNT = "likeCount"
-const val KEY_DISLIKE_COUNT = "dislikeCount"
+const val KEY_RATING = "rating"
 
 class MainActivity : ComponentActivity() {
     private var isRead: Boolean by mutableStateOf(false)
-    private var isLiked: Boolean by mutableStateOf(false)
-    private var isDisliked: Boolean by mutableStateOf(false)
-    private var likesCount: Int by mutableIntStateOf(0)
-    private var dislikesCount: Int by mutableIntStateOf(0)
+    private var rating: Int by mutableIntStateOf(0)
 
     private val resultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -39,10 +33,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             MainActivityScreen(
                 isRead,
-                likesCount,
-                dislikesCount,
-                isLiked,
-                isDisliked,
+                rating,
                 ::onClickLike,
                 ::onClickDislike,
                 ::onClickOtherArticle,
@@ -54,19 +45,13 @@ class MainActivity : ComponentActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putBoolean(KEY_READ, isRead)
-        outState.putBoolean(KEY_LIKE_IS_PRESSED, isLiked)
-        outState.putBoolean(KEY_DISLIKE_IS_PRESSED, isDisliked)
-        outState.putInt(KEY_LIKE_COUNT, likesCount)
-        outState.putInt(KEY_DISLIKE_COUNT, dislikesCount)
+        outState.putInt(KEY_RATING, rating)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         isRead = savedInstanceState.getBoolean(KEY_READ)
-        likesCount = savedInstanceState.getInt(KEY_LIKE_COUNT)
-        dislikesCount = savedInstanceState.getInt(KEY_DISLIKE_COUNT)
-        isLiked = savedInstanceState.getBoolean(KEY_LIKE_IS_PRESSED)
-        isDisliked = savedInstanceState.getBoolean(KEY_DISLIKE_IS_PRESSED)
+        rating = savedInstanceState.getInt(KEY_RATING)
     }
 
     override fun onStart() {
@@ -118,33 +103,11 @@ class MainActivity : ComponentActivity() {
 
     fun onClickLike() {
         Log.d("MainActivity", "Like is pressed")
-
-        if (!isLiked) {
-            likesCount++
-            isLiked = true
-            if (isDisliked) {
-                dislikesCount--
-                isDisliked = false
-            }
-        } else {
-            likesCount--
-            isLiked = false
-        }
+        rating++
     }
 
     fun onClickDislike() {
         Log.d("MainActivity", "Dislike is pressed")
-
-        if (!isDisliked) {
-            dislikesCount++
-            isDisliked = true
-            if (isLiked) {
-                likesCount--
-                isLiked = false
-            }
-        } else {
-            dislikesCount--
-            isDisliked = false
-        }
+        rating--
     }
 }

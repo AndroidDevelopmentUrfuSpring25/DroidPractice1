@@ -12,6 +12,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -24,19 +25,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import ru.urfu.droidpractice1.R
 import ru.urfu.droidpractice1.ui.theme.DroidPractice1Theme
+
+private val PaddingSize = 15.dp
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun MainActivityScreen(
     isRead: Boolean = false,
-    likesCount: Int = 0,
-    dislikesCount: Int = 0,
-    isLiked: Boolean = false,
-    isDisliked: Boolean = false,
+    rating: Int = 0,
     onClickLike: () -> Unit = {},
     onClickDisLike: () -> Unit = {},
     onClickOtherArticle: () -> Unit = {},
@@ -57,7 +56,7 @@ fun MainActivityScreen(
                                 .clickable {
                                     onClickShare()
                                 }
-                                .padding(end = 15.dp),
+                                .padding(end = PaddingSize),
                             painter = painterResource(id = R.drawable.ic_share),
                             contentDescription = null
                         )
@@ -68,23 +67,24 @@ fun MainActivityScreen(
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
                     .padding(innerPadding)
+                    .padding(PaddingSize)
             ) {
                 Text(
                     text = stringResource(R.string.article_1_title),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(bottom = 15.dp),
+                        .padding(bottom = PaddingSize),
                     textAlign = TextAlign.Center,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 25.sp
+                    fontSize = MaterialTheme.typography.titleLarge.fontSize
                 )
 
                 Text(
                     text = stringResource(R.string.article_1_intro),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(bottom = 15.dp),
-                    fontSize = 15.sp
+                        .padding(bottom = PaddingSize),
+                    fontSize = MaterialTheme.typography.bodyMedium.fontSize
                 )
 
                 AsyncImage(
@@ -92,23 +92,23 @@ fun MainActivityScreen(
                     contentDescription = null,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(bottom = 15.dp)
+                        .padding(bottom = PaddingSize)
                 )
 
                 Text(
                     text = stringResource(R.string.article_1_content),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(bottom = 15.dp),
-                    fontSize = 15.sp
+                        .padding(bottom = PaddingSize),
+                    fontSize = MaterialTheme.typography.bodyMedium.fontSize
                 )
 
                 Text(
                     text = stringResource(R.string.article_1_conclusion),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(bottom = 15.dp),
-                    fontSize = 15.sp
+                        .padding(bottom = PaddingSize),
+                    fontSize = MaterialTheme.typography.bodyMedium.fontSize
                 )
 
                 Row(
@@ -119,27 +119,22 @@ fun MainActivityScreen(
                             .clickable {
                                 onClickLike()
                             }
-                            .padding(end = 15.dp),
+                            .padding(end = PaddingSize),
                         painter = painterResource(id = R.drawable.ic_like),
                         contentDescription = null,
-                        tint = if (isLiked) Color.Green else Color.Black
                     )
                     Text(
-                        text = "$likesCount",
-                        modifier = Modifier.padding(end = 15.dp)
+                        text = "$rating",
+                        modifier = Modifier.padding(end = PaddingSize)
                     )
                     Icon(
                         modifier = Modifier
                             .clickable {
                                 onClickDisLike()
                             }
-                            .padding(end = 15.dp),
+                            .padding(end = PaddingSize),
                         painter = painterResource(id = R.drawable.ic_dislike),
                         contentDescription = null,
-                        tint = if (isDisliked) Color.Red else Color.Black
-                    )
-                    Text(
-                        text = "$dislikesCount",
                     )
                 }
 
@@ -148,13 +143,13 @@ fun MainActivityScreen(
                         .clickable {
                             onClickOtherArticle()
                         }
-                        .padding(top = 15.dp)
+                        .padding(top = PaddingSize)
                 ) {
                     Text(
                         text = stringResource(R.string.article_2_title),
-                        modifier = Modifier.padding(15.dp),
+                        modifier = Modifier.padding(PaddingSize),
                         color = if (isRead) Color.Gray else Color.Black,
-                        fontSize = 15.sp
+                        fontSize = MaterialTheme.typography.bodyMedium.fontSize
                     )
                 }
             }
