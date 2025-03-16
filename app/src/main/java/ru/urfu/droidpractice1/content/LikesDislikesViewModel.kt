@@ -3,43 +3,59 @@ package ru.urfu.droidpractice1.content
 import android.util.Log
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 
 class LikesDislikesViewModel : ViewModel() {
-    var likeCount = mutableIntStateOf(0)
-    var isLiked = mutableStateOf(false)
-    var dislikeCount = mutableIntStateOf(0)
-    var isDisliked = mutableStateOf(false)
+    var state = mutableStateOf(LikeDislikeState())
 
     fun toggleLike() {
         Log.d(LESSON_LOG, "Inside the like toggle")
 
-        if (isLiked.value) {
-            likeCount.value -= 1
+        val newLikeCount = if (state.value.isLiked) {
+            state.value.likeCount - 1
+        } else {
+            state.value.likeCount + 1
         }
-        isLiked.value = !isLiked.value
-        if (isLiked.value) {
-            likeCount.value += 1
+
+        val newDislikeCount = if (state.value.isDisliked) {
+            state.value.dislikeCount - 1
+        } else {
+            state.value.dislikeCount
         }
-        if (isDisliked.value) {
-            dislikeCount.value -= 1
-            isDisliked.value = false
-        }
+
+        state.value = state.value.copy(
+            likeCount = newLikeCount,
+            dislikeCount = newDislikeCount,
+            isLiked = !state.value.isLiked,
+            isDisliked = false,
+            likeColor = if (newLikeCount > 0) Color.Red else Color.Black,
+            dislikeColor = if (newDislikeCount > 0) Color.Red else Color.Black
+        )
     }
 
     fun toggleDislike() {
         Log.d(LESSON_LOG, "Inside the dislike toggle")
 
-        if (isDisliked.value) {
-            dislikeCount.value -= 1
+        val newDislikeCount = if (state.value.isDisliked) {
+            state.value.dislikeCount - 1
+        } else {
+            state.value.dislikeCount + 1
         }
-        isDisliked.value = !isDisliked.value
-        if (isDisliked.value) {
-            dislikeCount.value += 1
+
+        val newLikeCount = if (state.value.isLiked) {
+            state.value.likeCount - 1
+        } else {
+            state.value.likeCount
         }
-        if (isLiked.value) {
-            likeCount.value -= 1
-            isLiked.value = false
-        }
+
+        state.value = state.value.copy(
+            likeCount = newLikeCount,
+            dislikeCount = newDislikeCount,
+            isDisliked = !state.value.isDisliked,
+            isLiked = false,
+            likeColor = if (newLikeCount > 0) Color.Red else Color.Black,
+            dislikeColor = if (newDislikeCount > 0) Color.Red else Color.Black
+        )
     }
 }

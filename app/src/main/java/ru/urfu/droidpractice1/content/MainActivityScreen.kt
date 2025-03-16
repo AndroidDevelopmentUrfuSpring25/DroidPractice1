@@ -16,11 +16,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -44,6 +47,7 @@ import ru.urfu.droidpractice1.MainActivity
 import ru.urfu.droidpractice1.R
 import ru.urfu.droidpractice1.SecondActivity
 import ru.urfu.droidpractice1.ui.theme.DroidPractice1Theme
+import ru.urfu.droidpractice1.ui.theme.Typography
 
 private const val SHARE_TEXT = "Поделиться"
 private const val LINK_TO_ARTICLE = "https://habr.com/ru/articles/868784/"
@@ -69,112 +73,75 @@ fun MainActivityScreen(
                     }
                 )
             }) { innerPadding ->
-            Box(
-                modifier = Modifier.padding(innerPadding)
+            Column(
+                modifier = Modifier
+                    .padding(innerPadding)
+                    .padding(12.dp)
+                    .verticalScroll(rememberScrollState())
             ) {
-                Column (
+                Text(
+                    text = stringResource(id = R.string.first_article_title),
+                    style = Typography.bodyLarge,
+                )
+                Text(
+                    text = stringResource(id = R.string.first_article_text_intro),
+                    style = Typography.bodyMedium,
+                    modifier = Modifier.padding(top = 12.dp)
+                )
+                Text(
+                    text = stringResource(id = R.string.first_article_case),
+                    style = Typography.titleLarge,
+                    modifier = Modifier.padding(top = 12.dp)
+                )
+                AsyncImage(
+                    model = "https://upload.wikimedia.org/wikipedia/commons/e/e8/New-logo-magnit.jpg",
+                    contentDescription = null,
                     modifier = Modifier
-                        .padding(12.dp)
-                        .verticalScroll(rememberScrollState())
+                        .padding(top = 20.dp, bottom = 20.dp)
+                        .fillMaxWidth()
+                        .size(200.dp)
+                )
+                Text(
+                    text = stringResource(id = R.string.first_article_case_text),
+                    style = Typography.bodyMedium,
+                    modifier = Modifier.padding(top = 12.dp)
+                )
+                Text(
+                    text = stringResource(id = R.string.first_article_model_experiments),
+                    style = Typography.titleLarge,
+                    modifier = Modifier.padding(top = 12.dp)
+                )
+                BulletPointLlmStatsList()
+                Text(
+                    text = stringResource(id = R.string.first_article_pre_conclusion),
+                    modifier = Modifier.padding(top = 12.dp),
+                    style = Typography.bodyMedium
+                )
+                Text(
+                    text = stringResource(id = R.string.first_article_conclusion),
+                    style = Typography.titleLarge,
+                    modifier = Modifier.padding(top = 12.dp)
+                )
+                Text(
+                    text = stringResource(id = R.string.first_article_conclusion_text),
+                    modifier = Modifier.padding(top = 12.dp),
+                    style = Typography.bodyMedium
+                )
+                LikesAndDislikesStats()
+                val context = LocalContext.current
+                Card(
+                    modifier = Modifier.clickable {
+                        val intent = Intent(context, SecondActivity::class.java)
+                        Log.d(LESSON_LOG, "Starting second activity")
+                        resultLauncher.launch(intent)
+                    }
                 ) {
                     Text(
-                        text = stringResource(
-                            id = R.string.first_article_title,
-                        ),
-                        fontSize = 25.sp,
-                        fontWeight = FontWeight.Bold
+                        text = stringResource(id = R.string.second_article_title),
+                        modifier = Modifier.padding(12.dp),
+                        color = if (read) Color.Gray else Color.Black,
+                        style = Typography.bodyMedium
                     )
-                    Text(
-                        text = buildAnnotatedString {
-                            append("    ")
-                            append(
-                                stringResource(
-                                    id = R.string.first_article_text_intro
-                                )
-                            )
-                        },
-                        modifier = Modifier.padding(top = 12.dp)
-                    )
-                    Text(
-                        text = stringResource(
-                            id = R.string.first_article_case
-                        ),
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(top = 12.dp)
-                    )
-                    AsyncImage(
-                        model = "https://upload.wikimedia.org/wikipedia/commons/e/e8/New-logo-magnit.jpg",
-                        contentDescription = null,
-                        modifier = Modifier
-                            .padding(top = 20.dp, bottom = 20.dp)
-                            .fillMaxWidth()
-                            .fillMaxSize()
-                            .size(200.dp)
-                    )
-                    Text(
-                        text = buildAnnotatedString {
-                            append("    ")
-                            append(stringResource(
-                                    id = R.string.first_article_case_text
-                                )
-                            )
-                        },
-                        modifier = Modifier.padding(top = 12.dp)
-                    )
-                    Text(
-                        text = stringResource(
-                            id = R.string.first_article_model_experiments
-                        ),
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(top = 12.dp)
-                    )
-                    BulletPointLlmStatsList()
-                    Text(
-                        text = buildAnnotatedString {
-                            append("    ")
-                            append(
-                                stringResource(
-                                    id = R.string.first_article_pre_conclusion
-                                )
-                            )
-                        },
-                        modifier = Modifier.padding(top = 12.dp)
-                    )
-                    Text(
-                        text = stringResource(
-                            id = R.string.first_article_conclusion
-                        ),
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(top = 12.dp)
-                    )
-                    Text(
-                        text = buildAnnotatedString {
-                            append("    ")
-                            append(
-                                stringResource(
-                                    id = R.string.first_article_conclusion_text
-                                )
-                            )
-                        },
-                        modifier = Modifier.padding(top = 12.dp)
-                    )
-                    LikesAndDislikesStats()
-                    val context = LocalContext.current
-                    Card(
-                        modifier = Modifier.clickable {
-                            val intent = Intent(context, SecondActivity::class.java)
-                            Log.d(LESSON_LOG, "Starting second activity")
-                            resultLauncher.launch(intent)
-                        }
-                    ) {
-                        Text(
-                            text = stringResource(
-                                id = R.string.second_article_title
-                            ),
-                            modifier = Modifier.padding(12.dp),
-                            color = if (read) Color.Gray else Color.Black
-                        )
-                    }
                 }
             }
         }
@@ -193,14 +160,9 @@ fun BulletPointLlmStatsList() {
 
     items.forEach { itemId ->
         Text(
-            text = buildAnnotatedString {
-                withStyle(style = SpanStyle(color = Color.Black)) {
-                    append("•   ")
-                }
-                append(stringResource(id = itemId))
-            },
-            modifier = (Modifier.padding(top = 12.dp, start = 12.dp)),
-            fontSize = 16.sp,
+            text = stringResource(id = R.string.item_text, stringResource(id = itemId)),
+            modifier = Modifier.padding(top = 12.dp, start = 12.dp),
+            style = Typography.bodyMedium,
         )
     }
 }
@@ -211,12 +173,15 @@ fun BulletPointLlmStatsList() {
 fun ShareButton() {
     val context = LocalContext.current
 
-    Button(
+    IconButton(
         onClick = { shareContent(context, LINK_TO_ARTICLE) },
-        modifier = Modifier.padding(16.dp),
-        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFBE0026))
+        modifier = Modifier.padding(16.dp)
     ) {
-        Text(text = SHARE_TEXT)
+        Icon(
+            imageVector = Icons.Default.Share,
+            contentDescription = SHARE_TEXT,
+            tint = Color(0xFFBE0026)
+        )
     }
 }
 
@@ -235,13 +200,13 @@ fun LikesAndDislikesStats() {
             Icon(
                 painter = painterResource(id = R.drawable.like_icon),
                 contentDescription = "Like",
-                tint = if (viewModel.isLiked.value) Color.Red else Color.Black,
+                tint = viewModel.state.value.likeColor,
                 modifier = Modifier.size(24.dp)
             )
 
             Text(
                 modifier = Modifier.padding(top = 12.dp),
-                text = viewModel.likeCount.intValue.toString(),
+                text = viewModel.state.value.likeCount.toString(),
                 fontSize = 20.sp
             )
         }
@@ -254,13 +219,13 @@ fun LikesAndDislikesStats() {
             Icon(
                 painter = painterResource(id = R.drawable.dislike_icon),
                 contentDescription = "Dislike",
-                tint = if (viewModel.isDisliked.value) Color.Red else Color.Black,
+                tint = viewModel.state.value.dislikeColor,
                 modifier = Modifier.size(24.dp)
             )
 
             Text(
                 modifier = Modifier.padding(top = 12.dp),
-                text = viewModel.dislikeCount.intValue.toString(),
+                text = viewModel.state.value.dislikeCount.toString(),
                 fontSize = 20.sp
             )
         }
