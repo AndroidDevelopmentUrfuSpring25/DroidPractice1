@@ -13,10 +13,6 @@ private const val CAT_IMAGE_LINK =
 
 class SecondActivity : ComponentActivity() {
 
-    companion object {
-        const val KEY_READ = "readSecondArticle"
-    }
-
     private lateinit var binding: ActivitySecondBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,5 +38,9 @@ class SecondActivity : ComponentActivity() {
             setResult(RESULT_OK, Intent().apply { putExtra(KEY_READ, binding.readSwitch.isChecked) })
             finish()
         }
+    }
+
+    companion object {
+        const val KEY_READ = "readSecondArticle"
     }
 }
