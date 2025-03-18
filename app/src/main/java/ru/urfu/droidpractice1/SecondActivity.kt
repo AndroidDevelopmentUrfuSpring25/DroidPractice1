@@ -10,10 +10,6 @@ import com.bumptech.glide.Glide
 
 class SecondActivity : ComponentActivity() {
 
-    companion object {
-        var keyRead = "readSecondArticle"
-    }
-
     private lateinit var binding: ActivitySecondBinding
     private val imageLink = "https://img.championat.com/s/732x488/news/big/i/p/aleksandr-ovechkin-nazval-buduschego-kapitana-vashingtona_17403646002007547425.jpg"
 
@@ -47,5 +43,39 @@ class SecondActivity : ComponentActivity() {
             .asBitmap()
             .load(imageLink)
             .into(binding.image1)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d(MainActivity::class.toString(), "Start")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(MainActivity::class.toString(), "Resume")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(MainActivity::class.toString(), "Pause")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d(MainActivity::class.toString(), "Restart")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(MainActivity::class.toString(), "Stop")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(MainActivity::class.toString(), "Destroy")
+    }
+
+    companion object {
+        var keyRead = "readSecondArticle"
     }
 }

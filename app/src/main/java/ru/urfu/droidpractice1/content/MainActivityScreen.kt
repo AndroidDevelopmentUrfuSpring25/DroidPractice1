@@ -24,10 +24,13 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -45,7 +48,8 @@ import ru.urfu.droidpractice1.ArticleLink
 import ru.urfu.droidpractice1.R
 import ru.urfu.droidpractice1.SecondActivity
 import ru.urfu.droidpractice1.SecondActivity.Companion.keyRead
-import ru.urfu.droidpractice1.models.RatingModel
+
+import ru.urfu.droidpractice1.models.RatingState
 import ru.urfu.droidpractice1.ui.theme.DroidPractice1Theme
 
 @Composable
@@ -53,8 +57,6 @@ fun MainActivityScreen(
     isRead: Boolean,
     launcherResult: ActivityResultLauncher<Intent>
 ) {
-    val titleSize = 32
-    val textSize = 18
     val imageLink = "https://avatars.mds.yandex.net/get-entity_search/5512046/953703644/S600xU_2x"
 
     DroidPractice1Theme {
@@ -84,11 +86,7 @@ fun MainActivityScreen(
                             .padding(bottom = 15.dp),
 
                         text = stringResource(R.string.first_article_title),
-                        fontSize = titleSize.sp,
-                        textAlign = TextAlign.Center,
-                        fontWeight = FontWeight.Bold,
-                        lineHeight = (titleSize*1.2).sp
-
+                        style = MaterialTheme.typography.titleLarge
                     )
 
                     LikeDislikeStatistic()
@@ -108,8 +106,8 @@ fun MainActivityScreen(
                             .padding(10.dp),
 
                         text = stringResource(R.string.first_article_text1),
-                        fontSize = textSize.sp,
-                        lineHeight = (textSize*1.2).sp
+                        style = MaterialTheme.typography.bodyLarge
+
                     )
 
                     Text(
@@ -121,8 +119,7 @@ fun MainActivityScreen(
                                 bottom = 10.dp),
 
                         text = stringResource(R.string.first_article_text2),
-                        fontSize = textSize.sp,
-                        lineHeight = (textSize*1.2).sp
+                        style = MaterialTheme.typography.bodyLarge
                     )
 
                     Text(
@@ -134,8 +131,7 @@ fun MainActivityScreen(
                                 bottom = 10.dp),
 
                         text = stringResource(R.string.first_article_text3),
-                        fontSize = textSize.sp,
-                        lineHeight = (textSize*1.2).sp
+                        style = MaterialTheme.typography.bodyLarge
                     )
 
                     Text(
@@ -143,10 +139,7 @@ fun MainActivityScreen(
                             .padding(10.dp),
 
                         text = stringResource(R.string.first_article_text4),
-                        fontSize = 14.sp,
-                        lineHeight = (14*1.2).sp,
-
-                        fontStyle = FontStyle.Italic
+                        style = MaterialTheme.typography.labelSmall
                     )
 
                     val context = LocalContext.current
@@ -202,7 +195,9 @@ private fun shareArticle(context: Context, text: String) {
 @Preview(showBackground = true)
 @Composable
 fun LikeDislikeStatistic() {
-    val statistic: RatingModel = viewModel()
+    val likeCount = rememberSaveable { mutableStateOf(0) }
+    val dislikeCount = rememberSaveable { mutableStateOf(0) }
+    val voteState = rememberSaveable { mutableStateOf<RatingState>(RatingState.NONE) }
 
     val size = 32
 
@@ -211,18 +206,27 @@ fun LikeDislikeStatistic() {
         verticalAlignment = Alignment.CenterVertically
     ) {
         Column(
-            modifier = Modifier.clickable { statistic.pressLike() }
+            modifier = Modifier.clickable {
+                if (voteState.value == RatingState.LIKE) {
+                    likeCount.value--
+                    voteState.value = RatingState.NONE
+                } else {
+                    likeCount.value++
+                    if (voteState.value == RatingState.DISLIKE) dislikeCount.value--
+                    voteState.value = RatingState.LIKE
+                }
+            }
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.like),
                 contentDescription = "Like",
-                tint = if (statistic.isLiked.value) Color.Black else Color.Gray,
+                tint = if (voteState.value == RatingState.LIKE) Color.Black else Color.Gray,
                 modifier = Modifier.size(size.dp)
             )
 
             Text(
                 modifier = Modifier.padding(top = 6.dp, start = 8.dp),
-                text = statistic.likeIconCounter.intValue.toString(),
+                text = likeCount.value.toString(),
                 fontSize = size.sp
             )
         }
@@ -230,24 +234,31 @@ fun LikeDislikeStatistic() {
         Column(
             modifier = Modifier
                 .padding(start = 16.dp)
-                .clickable { statistic.pressDislike() }
+                .clickable {
+                    if (voteState.value == RatingState.DISLIKE) {
+                        dislikeCount.value--
+                        voteState.value = RatingState.NONE
+                    } else {
+                        dislikeCount.value++
+                        if (voteState.value == RatingState.LIKE) likeCount.value--
+                        voteState.value = RatingState.DISLIKE
+                    }
+                }
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.dislike),
                 contentDescription = "Dislike",
-
-                tint = if (statistic.isDisliked.value) Color.Black else Color.Gray,
-
-                modifier = Modifier
-                    .size(size.dp)
+                tint = if (voteState.value == RatingState.DISLIKE) Color.Black else Color.Gray,
+                modifier = Modifier.size(size.dp)
             )
 
             Text(
                 modifier = Modifier.padding(top = 6.dp, start = 8.dp),
-                text = statistic.dislikeIconCounter.intValue.toString(),
+                text = dislikeCount.value.toString(),
                 fontSize = size.sp
             )
         }
     }
 }
+
 
