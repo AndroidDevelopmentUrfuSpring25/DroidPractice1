@@ -15,4 +15,111 @@
         android:title="@string/article_title"
         android:navigationIcon="@drawable/arrow_back" />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextAppearance.Material3.HeadlineLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="@string/second_article_title"
+
+                android:textColor="@color/black"
+
+                android:textStyle="bold"
+
+                android:textAlignment="center"/>
+
+            <ImageView
+                android:id="@+id/image1"
+
+                android:contentDescription="@string/alexandr_ovechkin_photo"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="15dp"
+                />
+
+            <TextView
+                style="@style/TextAppearance.Material3.BodyLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="@string/second_article_text1"
+
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="vertical"
+
+                android:background="#e5e5e5"
+
+                android:padding="20dp"
+
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    style="@style/TextAppearance.Material3.BodyLarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/second_article_text2_bold"
+
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    style="@style/TextAppearance.Material3.BodyLarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/second_article_text3"
+
+
+                    android:layout_marginTop="5dp"
+                    />
+            </LinearLayout>
+
+            <TextView
+                style="@style/TextAppearance.Material3.BodyLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="@string/second_article_text4"
+
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                />
+
+            <Switch
+                android:id="@+id/switchRead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="240dp"
+                android:layout_marginBottom="20dp"
+
+                android:text="@string/article2_is_read"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
 </LinearLayout>
