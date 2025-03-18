@@ -13,18 +13,26 @@ import ru.urfu.droidpractice1.content.MainActivityScreen
 
 
 class MainActivity : ComponentActivity() {
-    private var isReadChecked = mutableStateOf(false)
+    private var isReadChecked = mutableStateOf(true)
+
+    companion object {
+        const val EXTRA_IS_READ_CHECKED = "isReadChecked"
+        const val RESULT_OK = Activity.RESULT_OK
+    }
 
     private val startForResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
+            if (result.resultCode == RESULT_OK) {
                 val data = result.data
-                isReadChecked.value = data?.getBooleanExtra("isReadChecked", false) ?: false
+                isReadChecked.value = data?.getBooleanExtra(EXTRA_IS_READ_CHECKED, false) ?: false
             }
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (savedInstanceState != null) {
+            isReadChecked.value = savedInstanceState.getBoolean("isReadChecked", true)
+        }
         Log.d("MainActivity", "onCreate() called")
         setContent {
             MainActivityScreen(isReadChecked) {
@@ -34,6 +42,12 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+    //Для сохранения состояния перед уничтожением активити
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean("isReadChecked", isReadChecked.value)
+    }
+
     override fun onStart() {
         super.onStart()
         Log.d("MainActivity", "onStart() called")
