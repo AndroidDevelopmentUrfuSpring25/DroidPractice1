@@ -42,7 +42,6 @@
                 android:id="@+id/article_image"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:src="@drawable/first_picture"
                 android:scaleType="centerCrop"
                 android:layout_marginBottom="@dimen/picturePadding" />
 
@@ -68,7 +67,6 @@
                 android:id="@+id/article_1image"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:src="@drawable/second_picture"
                 android:scaleType="centerCrop"
                 android:layout_marginBottom="@dimen/picturePadding"
                 android:layout_marginTop="@dimen/picturePadding"/>
@@ -88,7 +86,7 @@
                 android:text="@string/fourthParagraphSecondPage"
                 android:textSize="@dimen/fontText"
                 android:textColor="@color/black"
-                android:paddingBottom="@dimen/textPadding"/>
+                android:paddingBottom="@dimen/textPadding10dp"/>
 
             <TextView
                 android:id="@+id/article_5text"

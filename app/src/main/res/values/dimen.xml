@@ -2,7 +2,7 @@
 <resources>
     <dimen name="fontText">16sp</dimen>
     <dimen name="fontTitle">22sp</dimen>
-    <dimen name="textPadding">10dp</dimen>
+    <dimen name="textPadding10dp">10dp</dimen>
     <dimen name="picturePadding">15dp</dimen>
-    
+    <dimen name="textPadding16dp">16dp</dimen>
 </resources>

@@ -35,6 +35,7 @@ import ru.urfu.droidpractice1.ui.theme.PurpleGrey80
 import ru.urfu.droidpractice1.ui.theme.Purple80
 import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
@@ -53,12 +54,22 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalDensity
 import ru.urfu.droidpractice1.SecondActivity
 import coil.compose.AsyncImage
+import androidx.compose.ui.graphics.Color
+import androidx.activity.result.contract.ActivityResultContracts
+import ru.urfu.droidpractice1.MainActivity
 
 @Composable
 fun MainActivityScreen(isSecondArticleRead: Boolean) {
     val context = LocalContext.current
+    val textPadding10dp = with(LocalDensity.current) {
+        context.resources.getDimension(R.dimen.textPadding10dp).toDp()
+    }
+    val textPadding16dp = with(LocalDensity.current) {
+        context.resources.getDimension(R.dimen.textPadding16dp).toDp()
+    }
 
     DroidPractice1Theme {
         Scaffold(modifier = Modifier.fillMaxSize(),
@@ -71,115 +82,110 @@ fun MainActivityScreen(isSecondArticleRead: Boolean) {
                     },
                     actions = {
                         IconButton(onClick = {
-                            shareText(context, "Прочитайте эту статью!")
+                            shareText(context, R.string.shareTitle.toString())
                         }) {
                             Icon(
                                 imageVector = Icons.Default.Share,
                                 contentDescription = "Share"
                             )
-
                         }
                     }
-
                 )
             }) { innerPadding ->
-            Box(
-                modifier = Modifier.padding(innerPadding)
+            Column (
+                horizontalAlignment = Alignment.Start,
+                verticalArrangement = Arrangement.Top,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding)
+                    .padding(textPadding10dp)
+                    .verticalScroll(rememberScrollState())
+            ){
+                Text(
+                    text = stringResource(id = R.string.mainHeadingFirstPage),
+                    fontSize = MaterialTheme.typography.titleLarge.fontSize,
+                    lineHeight = MaterialTheme.typography.titleLarge.lineHeight,
+                    fontFamily = MaterialTheme.typography.titleLarge.fontFamily,
+                    fontWeight = FontWeight.Bold,
+                    letterSpacing = MaterialTheme.typography.titleLarge.letterSpacing,
+                )
 
-            ) {
-                Column (
-                    horizontalAlignment = Alignment.Start,
-                    verticalArrangement = Arrangement.Top,
+                LikeDislikeCounter()
+
+                AsyncImage(
+                    model = "https://img.championat.com/s/732x488/news/big/o/o/amur-ne-popal-v-plej-off-khl_1740999268648042281.jpg",
                     modifier = Modifier
-                        .fillMaxSize()
-                        .padding(10.dp)
-                        .verticalScroll(rememberScrollState())
-                ){
-                    Text(
-                        text = stringResource(id = R.string.mainHeadingFirstPage),
-                        fontSize = Typography.titleLarge.fontSize,
-                        lineHeight = Typography.titleLarge.lineHeight,
-                        fontFamily = Typography.titleLarge.fontFamily,
-                        fontWeight = FontWeight.Bold,
-                        letterSpacing = Typography.titleLarge.letterSpacing,
-                    )
+                        .fillMaxWidth()
+                        .padding(top = textPadding10dp, bottom = textPadding10dp, end = textPadding16dp, start = textPadding16dp),
+                    contentDescription = "picture",
+                    contentScale = ContentScale.Crop
+                )
 
+                Text(
+                    text = stringResource(id = R.string.firstParagraphFirstPage),
+                    fontSize = MaterialTheme.typography.bodyLarge.fontSize,
+                    lineHeight = MaterialTheme.typography.bodyLarge.lineHeight,
+                    fontFamily = MaterialTheme.typography.bodyLarge.fontFamily,
+                    fontWeight = FontWeight.Bold,
+                    letterSpacing = MaterialTheme.typography.bodyLarge.letterSpacing,
+                    modifier = Modifier
+                        .padding(top = textPadding10dp, bottom = textPadding10dp)
+                )
+                Text(
+                    text = stringResource(id = R.string.secondParagraphFirstPage),
+                    fontSize = MaterialTheme.typography.bodyLarge.fontSize,
+                    lineHeight = MaterialTheme.typography.bodyLarge.lineHeight,
+                    fontFamily = MaterialTheme.typography.bodyLarge.fontFamily,
+                    fontWeight = MaterialTheme.typography.bodyLarge.fontWeight,
+                    letterSpacing = MaterialTheme.typography.bodyLarge.letterSpacing,
+                    modifier = Modifier
+                        .padding(top = textPadding10dp, bottom = textPadding10dp)
+                )
+                Text(
+                    text = stringResource(id = R.string.thirdParagraphFirstPage),
+                    fontSize = MaterialTheme.typography.bodyLarge.fontSize,
+                    lineHeight = MaterialTheme.typography.bodyLarge.lineHeight,
+                    fontFamily = MaterialTheme.typography.bodyLarge.fontFamily,
+                    fontWeight = MaterialTheme.typography.bodyLarge.fontWeight,
+                    letterSpacing = MaterialTheme.typography.bodyLarge.letterSpacing,
+                    modifier = Modifier
+                        .padding(top = textPadding10dp, bottom = textPadding10dp)
+                )
+                Text(
+                    text = stringResource(id = R.string.fourthParagraphFirstPage),
+                    fontSize = MaterialTheme.typography.bodyLarge.fontSize,
+                    lineHeight = MaterialTheme.typography.bodyLarge.lineHeight,
+                    fontFamily = MaterialTheme.typography.bodyLarge.fontFamily,
+                    fontWeight = MaterialTheme.typography.bodyLarge.fontWeight,
+                    letterSpacing = MaterialTheme.typography.bodyLarge.letterSpacing,
+                    modifier = Modifier
+                        .padding(top = textPadding10dp, bottom = textPadding10dp)
+                )
+                AsyncImage(
+                    model = "https://img.championat.com/i/b/g/17409990851598301748.jpg",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = textPadding10dp, bottom = 5.dp, end = textPadding16dp, start = textPadding16dp),
+                    contentDescription = "picture",
+                    contentScale = ContentScale.Crop
+                )
+                Text(
+                    text = stringResource(id = R.string.fifthParagraphFirstPage),
+                    fontSize = 10.sp,
+                    modifier = Modifier.padding(bottom = textPadding16dp),
+                    color = PurpleGrey40,
+                    lineHeight = 12.sp,
+                )
 
-                    LikeDislikeCounter()
-
-                    AsyncImage(
-                        model = "https://img.championat.com/s/732x488/news/big/o/o/amur-ne-popal-v-plej-off-khl_1740999268648042281.jpg",
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 10.dp, bottom = 10.dp, end = 16.dp, start = 16.dp),
-                        contentDescription = "picture",
-                        contentScale = ContentScale.Crop
-                    )
-
-                    Text(
-                        text = stringResource(id = R.string.firstParagraphFirstPage),
-                        fontSize = Typography.bodyLarge.fontSize,
-                        lineHeight = Typography.bodyLarge.lineHeight,
-                        fontFamily = Typography.bodyLarge.fontFamily,
-                        fontWeight = FontWeight.Bold,
-                        letterSpacing = Typography.bodyLarge.letterSpacing,
-                        modifier = Modifier
-                            .padding(top = 10.dp, bottom = 10.dp)
-                    )
-                    Text(
-                        text = stringResource(id = R.string.secondParagraphFirstPage),
-                        fontSize = Typography.bodyLarge.fontSize,
-                        lineHeight = Typography.bodyLarge.lineHeight,
-                        fontFamily = Typography.bodyLarge.fontFamily,
-                        fontWeight = Typography.bodyLarge.fontWeight,
-                        letterSpacing = Typography.bodyLarge.letterSpacing,
-                        modifier = Modifier
-                            .padding(top = 10.dp, bottom = 10.dp)
-                    )
-                    Text(
-                        text = stringResource(id = R.string.thirdParagraphFirstPage),
-                        fontSize = Typography.bodyLarge.fontSize,
-                        lineHeight = Typography.bodyLarge.lineHeight,
-                        fontFamily = Typography.bodyLarge.fontFamily,
-                        fontWeight = Typography.bodyLarge.fontWeight,
-                        letterSpacing = Typography.bodyLarge.letterSpacing,
-                        modifier = Modifier
-                            .padding(top = 10.dp, bottom = 10.dp)
-                    )
-                    Text(
-                        text = stringResource(id = R.string.fourthParagraphFirstPage),
-                        fontSize = Typography.bodyLarge.fontSize,
-                        lineHeight = Typography.bodyLarge.lineHeight,
-                        fontFamily = Typography.bodyLarge.fontFamily,
-                        fontWeight = Typography.bodyLarge.fontWeight,
-                        letterSpacing = Typography.bodyLarge.letterSpacing,
-                        modifier = Modifier
-                            .padding(top = 10.dp, bottom = 10.dp)
-                    )
-                    AsyncImage(
-                        model = "https://img.championat.com/i/b/g/17409990851598301748.jpg",
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 10.dp, bottom = 5.dp, end = 16.dp, start = 16.dp),
-                        contentDescription = "picture",
-                        contentScale = ContentScale.Crop
-                    )
-                    Text(
-                        text = stringResource(id = R.string.fifthParagraphFirstPage),
-                        fontSize = 10.sp,
-                        modifier = Modifier.padding(bottom = 16.dp),
-                        color = PurpleGrey40,
-                        lineHeight = 12.sp,
-                    )
-
-                    ArticleCard(
-                        isRead = isSecondArticleRead,
-                        onClick = {
-                            val intent = Intent(context, SecondActivity::class.java)
-                            context.startActivity(intent)
+                ArticleCard(
+                    isRead = isSecondArticleRead,
+                    onClick = {
+                        val intent = Intent(context, SecondActivity::class.java).apply {
+                            putExtra(SecondActivity.KEY_IS_READ, isSecondArticleRead)
                         }
-                    )
-                }
+                        (context as MainActivity).secondActivityLauncher.launch(intent)
+                    }
+                )
             }
         }
     }
@@ -195,102 +201,112 @@ fun shareText(context: Context, text: String) {
     context.startActivity(shareIntent)
 }
 
+@Composable
+fun Counter(
+    count: Int,
+    icon: @Composable () -> Unit,
+    onClick: () -> Unit,
+    isSelected: Boolean,
+    selectedColor: Color
+) {
+    Row(
+        modifier = Modifier,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        IconButton(
+            onClick = onClick,
+            colors = IconButtonDefaults.iconButtonColors(
+                contentColor = if (isSelected) selectedColor else MaterialTheme.colorScheme.onSurface
+            )
+        ) {
+            icon()
+        }
+        Text(
+            text = "$count",
+            fontSize = 14.sp
+        )
+    }
+}
+
 @SuppressLint("SuspiciousIndentation")
-@Preview
 @Composable
 fun LikeDislikeCounter() {
     var likes by rememberSaveable { mutableStateOf(0) }
     var dislikes by rememberSaveable { mutableStateOf(0) }
     var selected by rememberSaveable { mutableStateOf("") }
 
-
-    Column(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally
+    Row(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(8.dp),
+        horizontalArrangement = Arrangement.Start
     ) {
-
-        Row(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(8.dp),
-            horizontalArrangement = Arrangement.Start
-        ) {
-            IconButton(onClick = {
+        Counter(
+            count = likes,
+            icon = { Icon(Icons.Default.ThumbUp, contentDescription = "like") },
+            onClick = {
                 if(selected == "like") {
                     likes--
                     selected = ""
                 } else {
-                    if (selected == "dislike") dislikes --
-                        likes++
-                        selected = "like"
-                    }
-                },
-                colors = IconButtonDefaults.iconButtonColors(
-                    contentColor = if (selected == "like") MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
-                )
-            )
-            {
-                Icon(Icons.Default.ThumbUp, contentDescription = "like")
-            }
-            Text(
-                text = "$likes",
-                modifier = Modifier
-                    .align(Alignment.CenterVertically),
-                fontSize = 14.sp
-                )
-
-            Spacer(modifier = Modifier.width(10.dp)
-            )
-
-            IconButton(
-                onClick = {
-                    if (selected == "dislike") {
-                        dislikes--
-                        selected = ""
-                    } else {
-                        if (selected == "like") likes --
-                        dislikes++
-                        selected = "dislike"
-                    }
-                },
-                colors = IconButtonDefaults.iconButtonColors(
-                    contentColor = if (selected == "dislike") MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurface
-                )
-            ) {
-                Icon(painterResource(id = R.drawable.thumb_down), contentDescription = "dislike")
-            }
-            Text(
-                text = "$dislikes",
-                modifier = Modifier
-                    .align(Alignment.CenterVertically),
-                fontSize = 14.sp
-            )
-        }
+                    if (selected == "dislike") dislikes--
+                    likes++
+                    selected = "like"
+                }
+            },
+            isSelected = selected == "like",
+            selectedColor = Color(0xFF2196F3)
+        )
+        Spacer(modifier = Modifier.width(16.dp))
+        Counter(
+            count = dislikes,
+            icon = { Icon(painterResource(id = R.drawable.thumb_down), contentDescription = "dislike") },
+            onClick = {
+                if(selected == "dislike") {
+                    dislikes--
+                    selected = ""
+                } else {
+                    if (selected == "like") likes--
+                    dislikes++
+                    selected = "dislike"
+                }
+            },
+            isSelected = selected == "dislike",
+            selectedColor = Color(0xFFF44336)
+        )
     }
 }
 
-
 @Composable
 fun ArticleCard(isRead : Boolean, onClick: () -> Unit) {
+    val context = LocalContext.current
+    val textPadding10dp = with(LocalDensity.current) {
+        context.resources.getDimension(R.dimen.textPadding10dp).toDp()
+    }
+
+    val textPadding16dp = with(LocalDensity.current) {
+        context.resources.getDimension(R.dimen.textPadding16dp).toDp()
+    }
+
     val backgroundColor = if (isRead) Purple80 else PurpleGrey80
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(10.dp)
+            .padding(textPadding10dp)
             .clickable { onClick() }
-            .clip(shape = RoundedCornerShape(16.dp))
+            .clip(shape = RoundedCornerShape(textPadding16dp))
             .background(backgroundColor),
         contentAlignment = Alignment.Center,
     ) {
         Text(
             text = stringResource(R.string.mainHeadingSecondPage),
-            fontSize = Typography.bodyLarge.fontSize,
-            lineHeight = Typography.bodyLarge.lineHeight,
-            fontFamily = Typography.bodyLarge.fontFamily,
-            fontWeight = Typography.bodyLarge.fontWeight,
-            letterSpacing = Typography.bodyLarge.letterSpacing,
+            fontSize = MaterialTheme.typography.bodyLarge.fontSize,
+            lineHeight = MaterialTheme.typography.bodyLarge.lineHeight,
+            fontFamily = MaterialTheme.typography.bodyLarge.fontFamily,
+            fontWeight = MaterialTheme.typography.bodyLarge.fontWeight,
+            letterSpacing = MaterialTheme.typography.bodyLarge.letterSpacing,
             modifier = Modifier
-                .padding(10.dp)
+                .padding(textPadding10dp)
         )
     }
 }

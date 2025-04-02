@@ -1,36 +1,39 @@
 package ru.urfu.droidpractice1
 
 import android.annotation.SuppressLint
-import android.content.SharedPreferences
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import coil.load
 import ru.urfu.droidpractice1.databinding.ActivitySecondBinding
 
 class SecondActivity : ComponentActivity() {
 
     private lateinit var binding: ActivitySecondBinding
-    private lateinit var sharedPreferences: SharedPreferences
+    private var isReadChecked = false
+
+    companion object {
+        const val KEY_IS_READ = "SECOND_ARTICLE_READ"
+    }
 
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySecondBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+        setContentView(binding.root)
 
-        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
-        val switchRead = binding.switchRead
-        binding.switchRead.isChecked = sharedPreferences.getBoolean("SECOND_ARTICLE_READ", false)
+        isReadChecked = intent.getBooleanExtra(KEY_IS_READ, false)
+        binding.switchRead.isChecked = isReadChecked
 
-        switchRead.setOnCheckedChangeListener { _, isChecked ->
-            sharedPreferences.edit().putBoolean("SECOND_ARTICLE_READ", isChecked).apply()
+        binding.switchRead.setOnCheckedChangeListener { _, isChecked ->
+            isReadChecked = isChecked
+            setResult(RESULT_OK, Intent().apply { putExtra(KEY_IS_READ, isReadChecked) })
         }
 
-        val toolbar: android.widget.Toolbar = binding.toolbar
-        setActionBar(toolbar)
+        binding.articleImage.load("https://img.championat.com/s/732x488/news/big/t/w/andrej-rublyov_17404098301814299990.jpg")
+        binding.article1image.load("https://img.championat.com/i/k/q/1740409651481784465.jpg")
 
+        setActionBar(binding.toolbar)
         binding.toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
     }
-
 }
-
