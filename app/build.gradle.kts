@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "ru.urfu.droidpractice1"
-        minSdk = 28
+        minSdk = 24
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -19,20 +19,25 @@ android {
             useSupportLibrary = true
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
     buildFeatures {
         compose = true
         viewBinding = true
     }
+
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
     }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -41,7 +46,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -51,6 +55,12 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.appcompat.v161)
+    implementation(libs.coil.compose)
+    implementation (libs.androidx.foundation)
+    implementation (libs.ui.tooling.preview)
+    implementation (libs.androidx.lifecycle.runtime.ktx.v260)
+    implementation (libs.androidx.activity.compose.v161)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
@@ -61,4 +71,6 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation("androidx.compose.ui:ui:1.5.0")
+    implementation("androidx.compose.ui:ui-util:1.5.0")
 }
