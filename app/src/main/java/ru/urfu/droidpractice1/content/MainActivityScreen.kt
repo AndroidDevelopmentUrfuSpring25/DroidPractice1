@@ -17,10 +17,15 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -37,14 +42,15 @@ import ru.urfu.droidpractice1.ui.theme.Typography
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun MainActivityScreen(
-    upVoteCount: Int = 0,
-    downVoteCount: Int = 0,
     isRead: Boolean = false,
-    upVote: () -> Unit = {},
-    downVote: () -> Unit = {},
     onToOtherScreenClicked: () -> Unit = {},
 ) {
     val context = LocalContext.current
+    val defaultPadding = 10.dp
+
+    var upVoteCount by rememberSaveable { mutableStateOf(0) }
+    var downVoteCount by rememberSaveable { mutableStateOf(0) }
+
     DroidPractice1Theme {
         Scaffold(modifier = Modifier.fillMaxSize(),
             topBar = {
@@ -55,16 +61,19 @@ fun MainActivityScreen(
                         )
                     },
                     actions = {
-                        Icon(
+                        IconButton(
+                            onClick = { shareArticle(context) },
                             modifier = Modifier
-                                .clickable { shareArticle(context) }
                                 .width(30.dp)
                                 .height(30.dp)
-                                .padding(end = 10.dp),
-                            painter = painterResource(id = R.drawable.share_icon),
-                            tint = Color.Black,
-                            contentDescription = null
-                        )
+                                .padding(end = defaultPadding)
+                        ) {
+                            Icon(
+                                painter = painterResource(id = R.drawable.share_icon),
+                                tint = Color.Black,
+                                contentDescription = null
+                            )
+                        }
                     }
                 )
             }) { innerPadding ->
@@ -72,14 +81,12 @@ fun MainActivityScreen(
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
                     .padding(innerPadding)
-                    .padding(10.dp)
+                    .padding(defaultPadding)
             ) {
-
-
                 Text(
                     text = stringResource(R.string.article_title2),
                     modifier = Modifier
-                        .padding(bottom = 10.dp),
+                        .padding(bottom = defaultPadding),
                     style = Typography.titleLarge
                 )
 
@@ -88,63 +95,65 @@ fun MainActivityScreen(
                     contentDescription = null,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(bottom = 10.dp)
+                        .padding(bottom = defaultPadding)
                 )
 
                 Text(
                     text = "   " + stringResource(R.string.paragraph_1),
                     style = Typography.bodyLarge,
                     modifier = Modifier
-                        .padding(bottom = 10.dp)
+                        .padding(bottom = defaultPadding)
                 )
 
                 Text(
                     text = "   " + stringResource(R.string.paragraph_2),
                     style = Typography.bodyLarge,
                     modifier = Modifier
-                        .padding(bottom = 10.dp)
+                        .padding(bottom = defaultPadding)
                 )
 
                 Text(
                     text = "   " + stringResource(R.string.paragraph_3),
                     style = Typography.bodyLarge,
                     modifier = Modifier
-                        .padding(bottom = 10.dp)
+                        .padding(bottom = defaultPadding)
                 )
 
                 Row(
-                    modifier = Modifier.padding(bottom = 10.dp),
+                    modifier = Modifier.padding(bottom = defaultPadding),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Icon(
+                    IconButton(
+                        onClick = { upVoteCount++ },
                         modifier = Modifier
-                            .clickable {
-                                upVote()
-                            }
                             .width(50.dp)
                             .height(50.dp)
-                            .padding(end = 10.dp),
-                        painter = painterResource(id = R.drawable.thumb_up),
-                        tint = Color.Black,
-                        contentDescription = null
-                    )
+                            .padding(end = defaultPadding)
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.thumb_up),
+                            tint = Color.Black,
+                            contentDescription = null
+                        )
+                    }
                     Text(
                         text = "$upVoteCount",
                         style = Typography.bodyLarge,
-                        modifier = Modifier.padding(end = 20.dp) // Отступ между текстом и иконкой
+                        modifier = Modifier.padding(end = 20.dp)
                     )
-                    Icon(
+                    IconButton(
+                        onClick = { downVoteCount++ },
                         modifier = Modifier
-                            .clickable {
-                                downVote()
-                            }
                             .width(50.dp)
                             .height(50.dp)
-                            .padding(end = 10.dp),
-                        painter = painterResource(id = R.drawable.thumb_down),
-                        tint = Color.Black,
-                        contentDescription = null
-                    )
+                            .padding(end = defaultPadding)
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.thumb_down),
+                            tint = Color.Black,
+                            contentDescription = null
+                        )
+                    }
                     Text(
                         text = "$downVoteCount",
                         style = Typography.bodyLarge
@@ -167,7 +176,6 @@ fun MainActivityScreen(
     }
 }
 
-
 private fun shareArticle(context: Context) {
     val shareText = "Привет посмотри статью https://www.rbc.ru/life/news/65efe12c9a7947a5a9ef8566"
     val sendIntent: Intent = Intent().apply {
@@ -177,7 +185,6 @@ private fun shareArticle(context: Context) {
     }
     context.startActivity(Intent.createChooser(sendIntent, null))
 }
-
 
 @Preview(showBackground = true)
 @Composable

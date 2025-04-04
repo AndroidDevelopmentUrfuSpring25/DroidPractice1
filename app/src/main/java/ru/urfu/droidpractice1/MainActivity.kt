@@ -13,12 +13,8 @@ import androidx.compose.runtime.setValue
 import ru.urfu.droidpractice1.content.MainActivityScreen
 
 const val KEY_READ = "isRead"
-const val KEY_UP_VOTE = "upVote"
-const val KEY_DOWN_VOTE = "downVote"
 
 class MainActivity : ComponentActivity() {
-    private var upVoteCount by mutableIntStateOf(0)
-    private var downVoteCount by mutableIntStateOf(0)
     private var isRead by mutableStateOf(false)
 
     private val resultLauncher =
@@ -34,28 +30,10 @@ class MainActivity : ComponentActivity() {
         Log.d("MainActivity", "onCreate()")
         setContent {
             MainActivityScreen(
-                upVoteCount,
-                downVoteCount,
-                isRead,
-                ::upVote,
-                ::downVote,
-                ::onToOtherScreenClicked
+                isRead = isRead,
+                onToOtherScreenClicked = ::onToOtherScreenClicked
             )
         }
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putBoolean(KEY_READ, isRead)
-        outState.putInt(KEY_UP_VOTE, upVoteCount)
-        outState.putInt(KEY_DOWN_VOTE, downVoteCount)
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-        isRead = savedInstanceState.getBoolean(KEY_READ)
-        upVoteCount = savedInstanceState.getInt(KEY_UP_VOTE)
-        downVoteCount = savedInstanceState.getInt(KEY_DOWN_VOTE)
     }
 
     fun onToOtherScreenClicked() {
@@ -64,14 +42,6 @@ class MainActivity : ComponentActivity() {
         }
         Log.d("MainActivity", "change activity main to second")
         resultLauncher.launch(intent)
-    }
-
-    fun upVote() {
-        upVoteCount++
-    }
-
-    fun downVote() {
-        downVoteCount++
     }
 
     override fun onStart() {
