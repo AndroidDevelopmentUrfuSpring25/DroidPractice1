@@ -15,4 +15,93 @@
         android:title="@string/article_title"
         android:navigationIcon="@drawable/arrow_back" />
 
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="30dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/heading2"
+                style="@style/HeaderText"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/insight_1"
+                style="@style/Subtitle_1"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/insight_1_description"
+                style="@style/SimpleText"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/insight_2"
+                style="@style/Subtitle_1"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/insight_2_description"
+                style="@style/SimpleText"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/insight_3"
+                style="@style/Subtitle_1"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/insight_3_description"
+                style="@style/SimpleText"
+                />
+
+            <ImageView
+                android:id="@+id/Fatutu_2_img"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="20dp"
+                android:scaleType="centerCrop"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/comment"
+                style="@style/HeaderText"
+                android:layout_marginTop="20dp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/comment_description"
+                style="@style/QuoteText"
+                />
+
+            <Switch
+                android:id="@+id/switch_read"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/switch_read"
+                android:layout_marginTop="10dp"
+                style="@style/SimpleText"/>
+
+        </LinearLayout>
+
+    </ScrollView>
 </LinearLayout>

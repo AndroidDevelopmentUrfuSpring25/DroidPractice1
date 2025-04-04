@@ -1,4 +1,19 @@
 <resources>
     <string name="app_name">DroidPractice1</string>
     <string name="article_title">Статья</string>
+    <string name="heading2">Информация о возвышениях</string>
+    <string name="insight_1">Insight I</string>
+    <string name="insight_1_description">Вступая в бой, получает 8 \'дух. оболочек\'. 20% шанс получить Moxie при их применении . Когда вы извлекаете \'дух. оболочки\', все союзники получают исцеление (количество извлеченных \'дух. оболочек\' x ATK Фатуту x 30%) HP. Когда враг повержен, Фатуту получает с него все оставшиеся \'дух. оболочки\'.</string>
+    <string name="insight_2">Insight II</string>
+    <string name="insight_2_description">ATK +5% при вступлении в бой.</string>
+    <string name="insight_3">Insight III</string>
+    <string name="insight_3_description">Вступая в бой, дополнительно получает 4 \'дух. оболочки\'. После применения или получения 7 оболочек, накладывает заклинание 1 ранга \'Неукротимые трещины\' на противника с наибольшим количеством \'дух. оболочек\'.</string>
+    <string name="comment">Отзыв</string>
+    <string name="comment_description">У нее есть пассивное исцеление, очищение всей команды по требованию, бафф, который распределяет урон, получаемый командой (что может помочь предотвратить ваншот), и она повышает урон команд с дополнительными действиями (FUA)</string>
+    <string name="switch_read">Прочитано</string>
+
+    <string name="heading1">Фатуту гайд</string>
+    <string name="general_description">Фатуту - это персонаж 6✦ ранга из Минерального афлатуса, который наносит Ментальный урон и относится к классу Выживание.</string>
+
+    <string name="transferToInsight">Читать информацию о возвышениях</string>
 </resources>
